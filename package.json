@@ -64,7 +64,8 @@
     "selenium-webdriver": "^3.3.0",
     "supertest": "^2.0.1",
     "supertest-as-promised": "4.0.2",
-    "validate-commit-msg": "^2.6.1"
+    "validate-commit-msg": "^2.6.1",
+    "xmldoc": "^1.0.0"
   },
   "devDependencies": {
     "jasmine-reporters": "^2.2.1"
