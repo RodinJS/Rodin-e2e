@@ -13,13 +13,12 @@ gulp.task('webdriver-standalone', protractor.webdriver_standalone);
 
 gulp.task('e2e', ['webdriver-update'], runProtractor);
 
-// For running tests in Docker with Selenium Hub
-gulp.task('docker', ['webdriver-update'], runProtractor('docker'));
 
 function runProtractor(env, done) {
     let configPath = 'e2e/configs/protractor.conf.js';
 
-    if(env && env === 'docker') {
+    // For running tests in Docker with Selenium Hub
+    if(process.env && process.env.NODE_ENV === 'docker') {
         configPath = 'e2e/configs/protractor.docker.js'
     } 
 
