@@ -14,7 +14,7 @@ gulp.task('webdriver-standalone', protractor.webdriver_standalone);
 gulp.task('e2e', ['webdriver-update'], runProtractor);
 
 
-function runProtractor(env, done) {
+function runProtractor(done) {
     let configPath = 'e2e/configs/protractor.conf.js';
 
     // For running tests in Docker with Selenium Hub
