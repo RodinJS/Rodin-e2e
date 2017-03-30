@@ -9,7 +9,8 @@
     "npm": "3.9.x"
   },
   "scripts": {
-    "e2e": "gulp e2e"
+    "e2e": "gulp e2e",
+    "docker": "gulp docker"
   },
   "repository": {
     "type": "git",
