@@ -19,7 +19,9 @@ exports.config = {
     },*/
     multiCapabilities: [{
         browserName: 'chrome'
-    }, /*{
+    }, {
+        browserName: 'firefox'
+    }/*{
         browserName: 'chrome',
         chromeOptions:{
             mobileEmulation:{
