@@ -18,15 +18,22 @@ exports.config = {
     //     deviceName: 'Android Emulator',
     // },
     multiCapabilities: [{
-        browserName: 'firefox'
+        browserName: 'firefox',
+        count: 2
     }, {
-        browserName: 'chrome'
+        browserName: 'chrome',
+        count: 2
     }, {
         browserName: 'chrome',
         platformName: 'Android',
         platformVersion: '7.0',
         deviceName: 'Android Emulator',
-    }/*{
+    }, {
+        browserName: 'safari',
+        platformName: 'iOS',
+        platformVersion: '10.3',
+        deviceName: 'iPhone Simulator',
+    },/*{
         browserName: 'chrome',
         chromeOptions:{
             mobileEmulation:{
