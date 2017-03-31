@@ -11,12 +11,6 @@ exports.config = {
         './../tests/**/*.tc.js'
     ],
 
-    // capabilities: {
-    //     browserName: 'chrome',
-    //     platformName: 'Android',
-    //     platformVersion: '7.0',
-    //     deviceName: 'Android Emulator',
-    // },
     multiCapabilities: [{
         browserName: 'firefox',
         count: 2
@@ -28,19 +22,14 @@ exports.config = {
         platformName: 'Android',
         platformVersion: '7.0',
         deviceName: 'Android Emulator',
-    }, {
-        browserName: 'safari',
-        platformName: 'iOS',
-        platformVersion: '10.3',
-        deviceName: 'iPhone Simulator',
-    },/*{
-        browserName: 'chrome',
-        chromeOptions:{
-            mobileEmulation:{
-                deviceName:'Google Nexus 5'
-            }
-        }
-    }*/],
+    }, 
+    // {
+    //     browserName: 'safari',
+    //     platformName: 'iOS',
+    //     platformVersion: '10.3',
+    //     deviceName: 'iPhone Simulator',
+    // },
+    ],
     allScriptsTimeout: 50000,
     getPageTimeout: 50000,
 
