@@ -11,19 +11,19 @@ exports.config = {
         './../tests/**/*.tc.js'
     ],
 
-  /*  capabilities: {
+    capabilities: {
         browserName: 'chrome',
         platformName: 'Android',
         platformVersion: '7.0',
         deviceName: 'Android Emulator',
-    },*/
+    },
     multiCapabilities: [{
         browserName: 'chrome',
         'count': 2
     }, {
         browserName: 'firefox',
         'count': 2
-    }/*{
+    },/*{
         browserName: 'chrome',
         chromeOptions:{
             mobileEmulation:{
