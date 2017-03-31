@@ -18,11 +18,9 @@ exports.config = {
         deviceName: 'Android Emulator',
     },
     multiCapabilities: [{
-        browserName: 'chrome',
-        'count': 2
+        browserName: 'chrome'
     }, {
-        browserName: 'firefox',
-        'count': 2
+        browserName: 'firefox'
     },/*{
         browserName: 'chrome',
         chromeOptions:{
