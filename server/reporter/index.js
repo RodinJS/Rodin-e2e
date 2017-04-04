@@ -201,7 +201,7 @@ var HTMLReport = function () {
         } else {
             report.screenshotsOnlyOnFailure = testConfig.screenshotsOnlyOnFailure;
         }
-        // report.platform = testConfig.platform;
+        report.platform = testConfig.platform;
 
         //generate statistics
         var testDetails = generateSummaries(reportXml, report);
@@ -211,7 +211,7 @@ var HTMLReport = function () {
         report.time = report.time.toLocaleString();
 
         //write to html file
-        var testOutputPath = getPath('/' + report.browser + '-test-report.html', testConfig['outputPath'] || './');
+        var testOutputPath = getPath('/' + report.browser + '-' + report.platform + '-test-report.html', testConfig['outputPath'] || './');
         fileSystem.writeFileSync(
             testOutputPath,
             _.template(readFile(getPath('index.tmpl')))({
