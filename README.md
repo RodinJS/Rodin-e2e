@@ -7,7 +7,7 @@
 
 ### Usage
 
-1. Be sure that you are in rodin_e2e directory.
+1. Be sure that you are in __rodin_e2e__ directory.
 2. For running test write in terminal `npm run e2e` . 
 
 
