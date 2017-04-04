@@ -10,7 +10,7 @@
   },
   "scripts": {
     "e2e": "gulp e2e",
-    "docker": "gulp docker"
+    "indocker": "export NODE_ENV=docker; gulp e2e"
   },
   "repository": {
     "type": "git",

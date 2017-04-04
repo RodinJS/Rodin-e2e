@@ -14,7 +14,10 @@ exports.config = {
     multiCapabilities: [{
         browserName: 'firefox'
     }, {
-        browserName: 'chrome'
+        browserName: 'chrome',
+        chromeOptions: {
+            args: ['--no-sandbox'],
+        },
     }, {
         browserName: 'chrome',
         platformName: 'Android',
@@ -43,6 +46,8 @@ exports.config = {
     },
 
     onPrepare: () => {
+        browser.manage().window().maximize();
+        browser.manage().timeouts().implicitlyWait(5000);
         const jasmineReporters = require('jasmine-reporters');
         return browser.getProcessedConfig().then((config) => {
             let browserName = config.capabilities.browserName;

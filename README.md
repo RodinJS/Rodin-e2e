@@ -1,7 +1,15 @@
 # Rodin-e2e
+=======================
 
-## Table of Contents
-  1. Install Node JS and NPM
-  2. RUN npm install (i)
-  3. For running test write in terminal (npm run e2e). 
-     Be sure that you are in rodin_e2e directory.
+### Installation
+
+	1. Install [Node JS](https://nodejs.org/en/download/).
+	2. Run `npm i` to install dependencies.
+
+### Usage
+
+	1. Be sure that you are in rodin_e2e directory.
+	2. For running test write in terminal `npm run e2e` . 
+
+
+### Docker Support (soon)
