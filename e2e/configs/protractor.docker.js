@@ -2,21 +2,19 @@
  * Created by xgharibyan on 3/23/17.
  */
 const DATE = formatDate(new Date());
+let platform;
+
 exports.config = {
     seleniumAddress: 'http://40.71.228.192:4444/wd/hub',
 
-    // directConnect: true,
-    // standalone: true,
     specs: [
         './../tests/**/*.tc.js'
     ],
 
     multiCapabilities: [{
-        browserName: 'firefox',
-        count: 2
+        browserName: 'firefox'
     }, {
-        browserName: 'chrome',
-        count: 2
+        browserName: 'chrome'
     }, {
         browserName: 'chrome',
         platformName: 'Android',
@@ -48,14 +46,15 @@ exports.config = {
         const jasmineReporters = require('jasmine-reporters');
         return browser.getProcessedConfig().then((config) => {
             let browserName = config.capabilities.browserName;
+            platform = ((config.capabilities.platformName) ? config.capabilities.platformName : 'Desktop');
             let junitReporter = new jasmineReporters.JUnitXmlReporter({
                 consolidateAll: true,
                 savePath: './reports/xml',
-                filePrefix: `${browserName}_${DATE}`,
+                filePrefix: `${browserName}_${platform}_${DATE}`,
                 modifySuiteName: function(generatedSuiteName, suite) {
                     // this will produce distinct suite names for each capability,
                     // e.g. 'firefox.login tests' and 'chrome.login tests'
-                    return browserName + '.' + generatedSuiteName;
+                    return browserName + '.' + platform + '.' + generatedSuiteName;
                 }
             });
             jasmine.getEnv().addReporter(junitReporter);
@@ -65,16 +64,11 @@ exports.config = {
     onComplete: () => {
         let browserName, browserVersion;
         let capsPromise = browser.getCapabilities();
-
-        capsPromise.then( (caps) => {
+        capsPromise.then((caps) => {
 
             browserName = caps.get('browserName');
             browserVersion = caps.get('version');
 
-            return browser.manage().logs().get('browser');
-        }).then((browserLog)=>{
-            const log = require('util').inspect(browserLog);
-            console.log('log:',  log, browserLog);
             const HTMLReport = require('../../server/reporter');
 
             const testConfig = {
@@ -82,13 +76,13 @@ exports.config = {
                 outputPath: `./reports/html/${DATE}`,
                 testBrowser: browserName,
                 browserVersion: browserVersion,
-                browserLog:log,
+                platform: platform,
                 modifiedSuiteName: false,
                 screenshotsOnlyOnFailure: true
             };
 
-            new HTMLReport().from(`./reports/xml/${browserName}_${DATE}.xml`, testConfig);
-        })
+            new HTMLReport().from(`./reports/xml/${browserName}_${platform}_${DATE}.xml`, testConfig);
+        });
     }
 };
 
@@ -101,6 +95,5 @@ function formatDate(date) {
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
 
-
-    return `${day}_${monthIndex+1}_${year}_${hours}:${minutes}:${seconds}`;
+    return `${year}_${monthIndex+1}_${day}_Time_${hours}_${minutes}`;
 }
