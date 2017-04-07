@@ -7,7 +7,7 @@
 const CONSTANTS = {
     spaceURL:'https://rodin.space/',
     designURL:'https://rodin.design/',
-    ioURL:'https://rodin.design/',
+    ioURL:'https://rodin.io/',
 };
 
 const TESTUSERS = [
