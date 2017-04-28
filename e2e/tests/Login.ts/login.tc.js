@@ -25,12 +25,12 @@ describe('Login.ts', () => {
 
 
     it('Login_with_not_existing_cridentals.tc', () => {
-        Login.isDisplayed();
+        Login.isDisplayed_Login_Fields();
         Login.processLogin(common.TESTUSERS[2].username, common.TESTUSERS[2].password);
     });
 
     it('Login_with_existing_cridentals.tc', () => {
-        Login.isDisplayed();
+        Login.isDisplayed_Login_Fields();
         Login.processLogin(common.TESTUSERS[0].username, common.TESTUSERS[0].password, true);
     });
 

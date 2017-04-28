@@ -10,7 +10,9 @@ exports.config = {
     directConnect: true,
     standalone: true,
     specs: [
-        './../tests/**/*.tc.js'
+        //'./../tests/**/*.tc.js'
+        './../tests/**/dashboard.tc.js'
+		
     ],
     multiCapabilities: [{
         browserName: 'chrome'

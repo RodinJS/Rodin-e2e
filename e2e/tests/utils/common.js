@@ -17,11 +17,19 @@ const TESTUSERS = [
     },
     {
         username:'mhers',
-        password:'a123456',
+        password:'a1234567',
     },
     {
         username:'wronguser',
         password:'wrongpass',
+    }
+];
+
+const TESTPROJECTS = [
+    {
+        ProjectName:'name'+Math.floor(Math.random()*10000000+1),
+        ProjectURL:'url'+Math.floor(Math.random()*10000000+1),
+        ProjectDescription:'description'
     }
 ];
 
@@ -40,5 +48,6 @@ module.exports = {
     goToUrl:goToUrl,
     inspectLog:inspectLog,
     CONSTANTS:CONSTANTS,
-    TESTUSERS:TESTUSERS
+    TESTUSERS:TESTUSERS,
+    TESTPROJECTS:TESTPROJECTS
 };
