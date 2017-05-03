@@ -7,14 +7,14 @@ const uitls = require('../utils/common');
 
 const View = function () {
 
-	// Login XPATHs
+	// Login Locators
     this.LoginContainer 				= element(by.css('.sign-in'));
     this.userNameField  				= this.LoginContainer.element(by.model('$ctrl.formData.username'));
     this.passwordField  				= this.LoginContainer.element(by.model('$ctrl.formData.password'));
     this.loginButton    				= this.LoginContainer.element(by.css('.btn-submit'));
     this.wrongCredentials 				= this.LoginContainer.element(by.css('.text-wrong'));
 
-	// Dashboard XPATHs
+	// Dashboard Locators
     this.dashboardContainer         	= element(by.css('.page-dashboard'));
     // this.dashboardContainer         	= element(by.xpath("//body[contains(@class, 'dashboard')]"));
     this.dashboardAccountWrapper    	= this.dashboardContainer.element(by.css('.hidden-xs'));
@@ -23,7 +23,17 @@ const View = function () {
     // this.add_icon 						= element(by.css('[ng-click="$ctrl.createProject()"]'));
     this.add_icon 						= element(by.xpath("//*[contains(@class,'icon-add')]"));
 
-	// Project XPATHs
+    // Function to generate (project settings), (project item), ... xpaths depending on project name.
+    this.projectSettings                = function  (project_name) {
+        return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    };
+
+    this.projectItem                   = function (project_name) {
+        return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+    };
+
+
+	// Project Locators
     // template_name = 'Simple Project';
     this.create_project_title           = element(by.xpath("//*[text()='Select template to create a project OR import project from GitHub']"));
     //this.Project_Template				= element(by.xpath(`//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(), '${template_name}' )]`)); // TODO Ask Gharibyan how to
@@ -33,7 +43,10 @@ const View = function () {
 	this.project_description 			= element(by.xpath("//*[@id='area']"));
 	this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save()']"));
 
-	
+	this.publicProjectCheckbox          = element(by.xpath("//span[@data-ng-model='$ctrl.projectPublic']"));
+	this.currentVersionLink             = element(by.xpath("//a[@class='text-yellow ng-binding']"));
+
+
     this.isDisplayed_Login_Fields = function () {
         expect(this.LoginContainer.isDisplayed()).toBe(true);
         expect(this.userNameField.isDisplayed()).toBe(true);
@@ -74,6 +87,28 @@ const View = function () {
             expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}project`);
         })
     };
+
+    this.open_project_settings = function (project_name) {
+        browser.actions().mouseMove(this.projectItem(project_name)).perform();
+        this.projectSettings(project_name).click();
+
+        // this.add_icon.click().then(() => {
+        //     expect(this.create_project_title.isDisplayed()).toBe(true);
+        //     expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}project`);
+        // })
+    };
+
+    this.publicProject = function (user, project_url) {
+        this.publicProjectCheckbox.click().then(() => {
+            expect(this.currentVersionLink.isDisplayed()).toBe(true);
+            this.currentVersionLink.getText().then((text)=>{
+                expect(text).toEqual(`${uitls.CONSTANTS.spaceURL}public/${user}/${project_url}`);
+
+                console.log(`Publick link = ${uitls.CONSTANTS.spaceURL}${user}/${project_url}`);
+            })
+        })
+    };
+
 	
 	this.process_fill_project_requred_fields = function (name, url, description, successCreate) {
 		this.Project_Template.click();
