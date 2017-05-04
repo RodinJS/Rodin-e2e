@@ -11,8 +11,6 @@ exports.config = {
     standalone: true,
     specs: [
         './../tests/**/*.tc.js'
-        // './../tests/**/Public_project_and_check.tc.js'
-		
     ],
     multiCapabilities: [{
         browserName: 'chrome'

@@ -16,28 +16,25 @@ const View = function () {
 
 	// Dashboard Locators
     this.dashboardContainer         	= element(by.css('.page-dashboard'));
-    // this.dashboardContainer         	= element(by.xpath("//body[contains(@class, 'dashboard')]"));
     this.dashboardAccountWrapper    	= this.dashboardContainer.element(by.css('.hidden-xs'));
 
 	this.Create_new_Project 			= element(by.xpath("//i[contains(@class, 'icon icon-add')]"));
-    // this.add_icon 						= element(by.css('[ng-click="$ctrl.createProject()"]'));
     this.add_icon 						= element(by.xpath("//*[contains(@class,'icon-add')]"));
 
     // Function to generate (project settings), (project item), ... xpaths depending on project name.
     this.projectSettings                = function  (project_name) {
         return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
     };
-
     this.projectItem                   = function (project_name) {
         return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
     };
 
-
 	// Project Locators
-    // template_name = 'Simple Project';
     this.create_project_title           = element(by.xpath("//*[text()='Select template to create a project OR import project from GitHub']"));
-    //this.Project_Template				= element(by.xpath(`//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(), '${template_name}' )]`)); // TODO Ask Gharibyan how to
-    this.Project_Template				= element(by.xpath("//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(),'Simple Project')]/parent::label/parent::div"));
+    this.Project_Template               = function (template_name) {
+        return element(by.xpath(`//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(),'${template_name}')]/parent::label/parent::div`));
+    };
+
     this.Project_Name_Field 			= element(by.xpath("//input[@data-ng-model='$ctrl.project.displayName']"));
 	this.project_URL 					= element(by.xpath("//*[@id='project-url']"));
 	this.project_description 			= element(by.xpath("//*[@id='area']"));
@@ -45,6 +42,8 @@ const View = function () {
 
 	this.publicProjectCheckbox          = element(by.xpath("//span[@data-ng-model='$ctrl.projectPublic']"));
 	this.currentVersionLink             = element(by.xpath("//a[@class='text-yellow ng-binding']"));
+	this.titleUserName                  = element(by.xpath("//span[@class='user-name ng-binding']"));
+	// this.titleUserName                  = element(by.css('user-name'));
 
 
     this.isDisplayed_Login_Fields = function () {
@@ -90,12 +89,13 @@ const View = function () {
 
     this.open_project_settings = function (project_name) {
         browser.actions().mouseMove(this.projectItem(project_name)).perform();
-        this.projectSettings(project_name).click();
-
-        // this.add_icon.click().then(() => {
-        //     expect(this.create_project_title.isDisplayed()).toBe(true);
-        //     expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}project`);
-        // })
+        this.projectSettings(project_name).click().then(() => {
+            expect(this.titleUserName.isDisplayed()).toBe(true);
+            this.titleUserName.getText().then((text)=>{
+                expect(text).toEqual(`${project_name}`);
+            });
+            expect(browser.getCurrentUrl()).toContain(`${uitls.CONSTANTS.spaceURL}project`);
+        })
     };
 
     this.publicProject = function (user, project_url) {
@@ -110,8 +110,8 @@ const View = function () {
     };
 
 	
-	this.process_fill_project_requred_fields = function (name, url, description, successCreate) {
-		this.Project_Template.click();
+	this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
+		this.Project_Template(template_name).click();
 	    this.Project_Name_Field.sendKeys(name);
         this.project_URL.sendKeys(url);
         this.project_description.sendKeys(description);

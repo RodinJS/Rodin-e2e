@@ -25,30 +25,28 @@ describe('Dashboard.ts', () => {
     });
 
     user = common.TESTUSERS[1].username;
+    password = common.TESTUSERS[1].password;
+
+
     it('Login_with_existing_cridentals.tc', () => {
         Login.isDisplayed_Login_Fields();
-        Login.processLogin(common.TESTUSERS[1].username, common.TESTUSERS[1].password, true);
+        Login.processLogin(user, password, true);
     });
 
+    template_name = common.TEMPLATENAMES[1];
     project_name = common.TESTPROJECTS[0].ProjectName;
     project_url = common.TESTPROJECTS[0].ProjectURL;
+    project_description = common.TESTPROJECTS[0].ProjectDescription;
+
     it('Create_project_with_unique_URL.tc', () => {
         Login.add_project();
         Login.isDisplayed_Project_Fields();
-        Login.process_fill_project_requred_fields(project_name, common.TESTPROJECTS[0].ProjectURL, common.TESTPROJECTS[0].ProjectDescription, true);
+        Login.process_fill_project_requred_fields(template_name, project_name, project_url, project_description, true);
     });
 
     it('Public_project_and_check.tc', () => {
-        // project_settings = element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]`));
-        // project_settings.click();
-
         Login.open_project_settings(project_name);
         Login.publicProject(user, project_url);
-
-        // Login.isDisplayed_Project_Fields();
-        // Login.process_fill_project_requred_fields(common.TESTPROJECTS[0].ProjectName, common.TESTPROJECTS[0].ProjectURL, common.TESTPROJECTS[0].ProjectDescription, true);
     });
-
-
 
 });

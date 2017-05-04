@@ -23,10 +23,9 @@ describe('Login.ts', () => {
         common.goToUrl('login');
     });
 
-
     it('Login_with_not_existing_cridentals.tc', () => {
         Login.isDisplayed_Login_Fields();
-        Login.processLogin(common.TESTUSERS[2].username, common.TESTUSERS[2].password);
+        Login.processLogin(common.TESTUSERS[1].username, common.TESTUSERS[1].password);
     });
 
     it('Login_with_existing_cridentals.tc', () => {

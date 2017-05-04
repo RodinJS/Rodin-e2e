@@ -25,13 +25,24 @@ const TESTUSERS = [
     }
 ];
 
+const num = Math.random()*10000000+1;
 const TESTPROJECTS = [
     {
-        ProjectName:'name'+Math.floor(Math.random()*10000000+1),
-        ProjectURL:'url'+Math.floor(Math.random()*10000000+1),
+        ProjectName:'name'+Math.floor(num),
+        ProjectURL:'url'+Math.floor(num),
         ProjectDescription:'description'
     }
 ];
+
+const TEMPLATENAMES = [
+    'Empty Project',
+    'Simple Project',
+    'Room Project',
+    'Deck',
+    'Video Control Panel',
+    'Drag n Drop'
+];
+
 
 function goToUrl(url){
     browser.get(url);
@@ -49,5 +60,6 @@ module.exports = {
     inspectLog:inspectLog,
     CONSTANTS:CONSTANTS,
     TESTUSERS:TESTUSERS,
-    TESTPROJECTS:TESTPROJECTS
+    TESTPROJECTS:TESTPROJECTS,
+    TEMPLATENAMES:TEMPLATENAMES
 };

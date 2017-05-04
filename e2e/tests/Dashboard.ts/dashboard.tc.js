@@ -32,7 +32,7 @@ describe('Dashboard.ts', () => {
     it('Create_project_with_unique_URL.tc', () => {
         Login.add_project();
         Login.isDisplayed_Project_Fields();
-        Login.process_fill_project_requred_fields(common.TESTPROJECTS[0].ProjectName, common.TESTPROJECTS[0].ProjectURL, common.TESTPROJECTS[0].ProjectDescription, true);
+        Login.process_fill_project_requred_fields(common.TEMPLATENAMES[1], common.TESTPROJECTS[0].ProjectName, common.TESTPROJECTS[0].ProjectURL, common.TESTPROJECTS[0].ProjectDescription, true);
     });
 
 });
