@@ -45,6 +45,13 @@ const View = function () {
 	this.titleUserName                  = element(by.xpath("//span[@class='user-name ng-binding']"));
 	// this.titleUserName                  = element(by.css('user-name'));
 
+    // public project and canvas
+    this.canvas                         = element(by.xpath('//canvas'));
+    this.scriptSrc                      = element(by.xpath("//script[@src='https://cdn.rodin.io/v0.0.5/vendor/vendor.js']"));
+
+    // error page
+    this.error404                       = element(by.xpath("//h1[text()='404']"));
+
 
     this.isDisplayed_Login_Fields = function () {
         expect(this.LoginContainer.isDisplayed()).toBe(true);
@@ -87,6 +94,23 @@ const View = function () {
         })
     };
 
+	this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
+		this.Project_Template(template_name).click();
+	    this.Project_Name_Field.sendKeys(name);
+        this.project_URL.sendKeys(url);
+        this.project_description.sendKeys(description);
+        this.save_and_get_started_button.click().then(() => {
+            if(successCreate){
+                expect(this.dashboardContainer.isDisplayed()).toBe(true);
+                expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}dashboard`);
+				// Should be added project name validation
+                //this.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
+                //    expect(value.username).toEqual(username);
+                //});
+            }
+        })
+    };
+
     this.open_project_settings = function (project_name) {
         browser.actions().mouseMove(this.projectItem(project_name)).perform();
         this.projectSettings(project_name).click().then(() => {
@@ -109,22 +133,37 @@ const View = function () {
         })
     };
 
-	
-	this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
-		this.Project_Template(template_name).click();
-	    this.Project_Name_Field.sendKeys(name);
-        this.project_URL.sendKeys(url);
-        this.project_description.sendKeys(description);
-        this.save_and_get_started_button.click().then(() => {
-            if(successCreate){
-                expect(this.dashboardContainer.isDisplayed()).toBe(true);
-                expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}dashboard`);
-				// Should be added project name validation
-                //this.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
-                //    expect(value.username).toEqual(username);
-                //});
-            }
-        })
+    this.UnPublicProject = function (user, project_url) {
+        this.publicProjectCheckbox.click();
+            // .then(() => {
+            // TODO Check element not to be present is not working yet
+            // expect(this.currentVersionLink.isPresent()).toEqual(false);
+        // })
+    };
+
+    this.openPublicProject = function (user, project_url) {
+        this.currentVersionLink.click().then(() => {
+            browser.ignoreSynchronization = true;
+            browser.getAllWindowHandles().then(function (handles) {
+                browser.switchTo().window(handles[1]);
+                browser.getCurrentUrl().then( function( url ) {
+                    console.log(`Current version: =  ${url}`);
+                    expect(browser.driver.getCurrentUrl()).toContain(`${uitls.CONSTANTS.spaceURL}public/${user}/${project_url}/?t=`);
+                    // TODO This part is not implimented yet
+                    // expect(this.scriptSrc.isDisplayed()).toBe(true);
+                    // expect(this.canvas.isDisplayed()).toBe(true);
+                });
+                browser.ignoreSynchronization = false;
+            });
+        });
+    };
+
+    this.openUnPublicProject = function (user, project_url) {
+        // this.currentVersionLink.click().then(() => {
+            // TODO make Publick url global variable!
+            browser.get(`${uitls.CONSTANTS.spaceURL}public/${user}/${project_url}/?t=`).then(() => {
+                expect(this.error404.isDisplayed()).toBe(true);
+            });
     };
 
 };
