@@ -3,7 +3,7 @@
  */
 
 const common = require('../utils/common');
-const Login = require('../components/login');
+const globalFunc = require('../components/globalFunctions');
 
 
 /**
@@ -18,8 +18,8 @@ Validate Part:
 3. Check there is no errors in console
 */
 
-describe('General_Settings.ts', () => {
 
+describe('General_Settings.ts', () => {
     beforeEach(() => {
         common.goToUrl('login');
     });
@@ -29,8 +29,8 @@ describe('General_Settings.ts', () => {
 
 
     it('Login_with_existing_cridentals.tc', () => {
-        Login.isDisplayed_Login_Fields();
-        Login.processLogin(user, password, true);
+        globalFunc.isDisplayed_Login_Fields();
+        globalFunc.processLogin(user, password, true);
     });
 
     template_name = common.TEMPLATENAMES[1];
@@ -39,15 +39,15 @@ describe('General_Settings.ts', () => {
     project_description = common.TESTPROJECTS[0].ProjectDescription;
 
     it('Create_project_with_unique_URL.tc', () => {
-        Login.add_project();
-        Login.isDisplayed_Project_Fields();
-        Login.process_fill_project_requred_fields(template_name, project_name, project_url, project_description, true);
+        globalFunc.add_project();
+        globalFunc.isDisplayed_Project_Fields();
+        globalFunc.process_fill_project_requred_fields(template_name, project_name, project_url, project_description, true);
     });
 
     it('Public_project_and_check.tc', () => {
-        Login.open_project_settings(project_name);
-        Login.publicProject(user, project_url);
-        Login.openPublicProject(user, project_url);
+        globalFunc.open_project_settings(project_name);
+        globalFunc.publicProject(user, project_url);
+        globalFunc.openPublicProject(user, project_url);
     });
 
 });

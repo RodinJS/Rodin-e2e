@@ -8,7 +8,9 @@ const uitls = require('../utils/common');
 const View = function () {
 
 	// Login Locators
+
     this.LoginContainer                 = element(by.css('.sign-in'));
+
     this.userNameField  				= this.LoginContainer.element(by.model('$ctrl.formData.username'));
     this.passwordField  				= this.LoginContainer.element(by.model('$ctrl.formData.password'));
     this.loginButton    				= this.LoginContainer.element(by.css('.btn-submit'));
@@ -54,7 +56,7 @@ const View = function () {
 
 
     this.isDisplayed_Login_Fields = function () {
-       // expect(this.LoginContainer.isDisplayed()).toBe(true);
+        expect(this.LoginContainer.isDisplayed()).toBe(true);
         expect(this.userNameField.isDisplayed()).toBe(true);
         expect(this.passwordField.isDisplayed()).toBe(true);
     };

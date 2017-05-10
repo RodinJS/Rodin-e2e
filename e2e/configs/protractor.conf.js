@@ -10,7 +10,11 @@ exports.config = {
     directConnect: true,
     standalone: true,
     specs: [
+<<<<<<< HEAD
         //'./../tests/**/*.tc.js'
+=======
+        // './../tests/**/*.tc.js'
+>>>>>>> a984af31c04c882275fce9b04b1830a4fb9651ba
         './../tests/**/UnPublic_project_and_check.tc.js'
     ],
     multiCapabilities: [{

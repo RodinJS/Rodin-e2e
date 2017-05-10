@@ -18,7 +18,6 @@ Validate Part:
 */
 
 describe('General_Settings.ts', () => {
-
     beforeEach(() => {
         common.goToUrl('login');
     });
