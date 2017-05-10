@@ -3,7 +3,7 @@
  */
 
 const common = require('../utils/common');
-const Login = require('../components/login');
+const globalFunc = require('../components/globalFunctions');
 
 
 /**
@@ -23,15 +23,14 @@ describe('Login.ts', () => {
         common.goToUrl('login');
     });
 
-
     it('Login_with_not_existing_cridentals.tc', () => {
-        Login.isDisplayed();
-        Login.processLogin(common.TESTUSERS[2].username, common.TESTUSERS[2].password);
+        globalFunc.isDisplayed_Login_Fields();
+        globalFunc.processLogin(common.TESTUSERS[2].username, common.TESTUSERS[2].password);
     });
 
     it('Login_with_existing_cridentals.tc', () => {
-        Login.isDisplayed();
-        Login.processLogin(common.TESTUSERS[0].username, common.TESTUSERS[0].password, true);
+        globalFunc.isDisplayed_Login_Fields();
+        globalFunc.processLogin(common.TESTUSERS[1].username, common.TESTUSERS[1].password, true);
     });
 
 });

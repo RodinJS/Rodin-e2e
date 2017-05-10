@@ -10,7 +10,8 @@ exports.config = {
     directConnect: true,
     standalone: true,
     specs: [
-        './../tests/**/*.tc.js'
+        //'./../tests/**/*.tc.js'
+        './../tests/**/UnPublic_project_and_check.tc.js'
     ],
     multiCapabilities: [{
         browserName: 'chrome'
