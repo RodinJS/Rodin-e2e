@@ -9,14 +9,28 @@ const objMap = require('../components/objectMap');
 
 const globalFunc = function () {
 
+    //TODO ask Raffi or Khach about moving these functions to objectMap
     // Function to generate (project settings), (project item), ... xpaths depending on project name.
-    
-    this.projectSettings                = function  (project_name) {
+    this.projectSettings              = function  (project_name) {
         return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
     };
-    
+
+    this.projectOpenInEditor          = function  (user_name, project_url) {
+        let url = uitls.CONSTANTS.spaceURL.replace("https://", "");
+        return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
+    };
+
+    this.projectDelete                = function  (project_name) {
+        // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    };
+
     this.projectItem                   = function (project_name) {
         return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+    };
+
+    // Editor Page
+    this.editorProjectsDropdownUrl      = function (project_url) {
+        return element(by.xpath(`//a[text()='${project_url}']`));
     };
 
     this.isDisplayed_Login_Fields = function () {
@@ -86,6 +100,20 @@ const globalFunc = function () {
             });
             expect(browser.getCurrentUrl()).toContain(`${uitls.CONSTANTS.spaceURL}project`);
         })
+    };
+
+    this.open_project_in_editor = function (user_name, project_name, project_url) {
+        browser.actions().mouseMove(this.projectItem(project_name)).perform();
+        this.projectOpenInEditor(user_name, project_url).click().then(() => {
+            expect(objMap.editorLoader.isDisplayed()).toBe(true);
+            expect(objMap.editorProjectsDropdown.isDisplayed()).toBe(true);
+            this.editorProjectsDropdownUrl(project_url).getText().then((text)=>{
+                expect(text).toEqual(`/${project_url}`);
+            });
+            //https://editor.rodin.space/mhers/url559128
+            let url = uitls.CONSTANTS.spaceURL.replace("https://", "https://editor.");  // TODO check if it is possible to get current using environment
+            expect(browser.getCurrentUrl()).toContain(`${url}${user_name}/${project_url}`);
+        });
     };
 
     this.publicProject = function (user, project_url) {

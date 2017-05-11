@@ -19,6 +19,25 @@ const TestObj = function () {
     this.add_icon 						= element(by.xpath("//*[contains(@class,'icon-add')]"));
 
 
+    // // Function to generate (project settings), (project item), ... xpaths depending on project name.
+    // this.projectSettings              = function  (project_name) {
+    //     return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    // };
+    //
+    // this.projectOpenInEditor          = function  (user_name, project_url) {
+    //     let url = common.CONSTANTS.spaceURL.replace("https://", "");
+    //     return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
+    // };
+    //
+    // this.projectDelete                = function  (project_name) {
+    //     // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    // };
+    //
+    // this.projectItem                   = function (project_name) {
+    //     return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+    // };
+
+
 	// Project Locators
     this.create_project_title           = element(by.xpath("//*[text()='Select template to create a project OR import project from GitHub']"));
     this.Project_Template               = function (template_name) {
@@ -46,6 +65,16 @@ const TestObj = function () {
 
     // error page
     this.error404                       = element(by.xpath("//h1[text()='404']"));
+
+    // Editor Page
+    this.editorLoader                   = element(by.xpath("//div[@class='loaderContent']"));
+    this.editorProjectsDropdown         = element(by.xpath("//a[@class='dropdown-toggle btn-folder-name ng-binding']"));
+
+    this.editorProjectsDropdownUrl      = function (project_url) {
+        return element(by.xpath(`//a[text()='${project_url}']`));
+    };
+
+
 };
 
 module.exports = new TestObj();
