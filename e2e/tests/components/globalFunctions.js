@@ -102,9 +102,14 @@ const globalFunc = function () {
         })
     };
 
+
+    // Is not working: ERROR:  Failed: Error while waiting for Protractor to sync with the page: "Cannot read property '$$testability' of undefined"
+    // Waiting for 5.1.2 version of protractor
     this.open_project_in_editor = function (user_name, project_name, project_url) {
         browser.actions().mouseMove(this.projectItem(project_name)).perform();
-        this.projectOpenInEditor(user_name, project_url).click().then(() => {
+        this.projectOpenInEditor(user_name, project_url).click().then((data) => {
+            // console.log('DATA', data);
+
             expect(objMap.editorLoader.isDisplayed()).toBe(true);
             expect(objMap.editorProjectsDropdown.isDisplayed()).toBe(true);
             this.editorProjectsDropdownUrl(project_url).getText().then((text)=>{
@@ -114,6 +119,10 @@ const globalFunc = function () {
             let url = uitls.CONSTANTS.spaceURL.replace("https://", "https://editor.");  // TODO check if it is possible to get current using environment
             expect(browser.getCurrentUrl()).toContain(`${url}${user_name}/${project_url}`);
         });
+
+            // .catch(err=>{
+            //     console.log('ERRR', err);
+            // })
     };
 
     this.publicProject = function (user, project_url) {
