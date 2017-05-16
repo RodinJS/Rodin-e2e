@@ -18,6 +18,23 @@ const TestObj = function () {
 	this.Create_new_Project 			= element(by.xpath("//i[contains(@class, 'icon icon-add')]"));
     this.add_icon 						= element(by.xpath("//*[contains(@class,'icon-add')]"));
 
+    this.accountLabel                   = element(by.id("accountLabel"));
+    this.editProfile                    = element(by.xpath("//a[@data-ui-sref='app.profile']"));
+    this.accountSettingsTitle           = element(by.css("//h1[@class='title']"));
+    this.facebookSync                   = element(by.xpath("//button[@ng-click='$ctrl.fbSync()']"));
+    this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
+
+    //Notification text
+    this.notificationText               = element(by.xpath("div[@ng-bind-html='message']"));    //  Check .text() value
+
+    //Google Login
+    this.googleUrl                      = "gmail.com";
+    this.googleEmail		            = element(by.id("identifierId"));
+    this.nextButton                     = element(by.xpath("//span[text()='Next']"));
+    this.googlePassword                 = element(by.xpath("//input[@name='password']"));
+
+
+
 
     // // Function to generate (project settings), (project item), ... xpaths depending on project name.
     // this.projectSettings              = function  (project_name) {
@@ -25,7 +42,6 @@ const TestObj = function () {
     // };
     //
     // this.projectOpenInEditor          = function  (user_name, project_url) {
-    //     let url = common.CONSTANTS.spaceURL.replace("https://", "");
     //     return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
     // };
     //

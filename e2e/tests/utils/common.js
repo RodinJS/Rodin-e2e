@@ -8,6 +8,7 @@ const CONSTANTS = {
     spaceURL:'https://rodin.space/',
     designURL:'https://rodin.design/',
     ioURL:'https://rodin.io/',
+    googleURL: 'google.com/',
 };
 
 const TESTUSERS = [
@@ -43,6 +44,18 @@ const TEMPLATENAMES = [
     'Drag n Drop'
 ];
 
+const SYNCACCOUNTS = [
+    {
+        googleEmail: 'Mher@rodin.io',
+        googlePassword: 'Rr14815/*-'
+    }
+];
+
+const golden_Profile_page = [
+    {
+        Title: 'Account Settings'
+    }
+];
 
 function goToUrl(url){
     browser.get(url);
@@ -61,5 +74,7 @@ module.exports = {
     CONSTANTS:CONSTANTS,
     TESTUSERS:TESTUSERS,
     TESTPROJECTS:TESTPROJECTS,
-    TEMPLATENAMES:TEMPLATENAMES
+    TEMPLATENAMES:TEMPLATENAMES,
+    SYNCACCOUNTS:SYNCACCOUNTS,
+    golden_Profile_page:golden_Profile_page
 };
