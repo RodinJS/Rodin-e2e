@@ -12,6 +12,7 @@ exports.config = {
     specs: [
         //'./../tests/**/*.tc.js'
         './../tests/**/EditProfile.tc.js'
+        // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{
         browserName: 'chrome'

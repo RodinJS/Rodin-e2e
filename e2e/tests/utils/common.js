@@ -51,11 +51,9 @@ const SYNCACCOUNTS = [
     }
 ];
 
-const golden_Profile_page = [
-    {
-        Title: 'Account Settings'
-    }
-];
+const golden = {
+    Title_profile_page: 'Account Settings'
+};
 
 function goToUrl(url){
     browser.get(url);
@@ -76,5 +74,5 @@ module.exports = {
     TESTPROJECTS:TESTPROJECTS,
     TEMPLATENAMES:TEMPLATENAMES,
     SYNCACCOUNTS:SYNCACCOUNTS,
-    golden_Profile_page:golden_Profile_page
+    golden:golden
 };

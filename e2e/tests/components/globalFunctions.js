@@ -16,7 +16,7 @@ const globalFunc = function () {
     };
 
     this.projectOpenInEditor          = function  (user_name, project_url) {
-        let url = uitls.CONSTANTS.spaceURL.replace("https://", "");
+        let url = utils.CONSTANTS.spaceURL.replace("https://", "");
         return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
     };
 
@@ -53,7 +53,7 @@ const globalFunc = function () {
         objMap.loginButton.click().then(() => {
             if(successLogin){
                 expect(objMap.dashboardContainer.isDisplayed()).toBe(true);
-                expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}dashboard`);
+                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}dashboard`);
                 objMap.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
                     expect(value.username).toEqual(username);
                 });
@@ -70,16 +70,18 @@ const globalFunc = function () {
     this.add_project = function () {
         objMap.add_icon.click().then(() => {
             expect(objMap.create_project_title.isDisplayed()).toBe(true);
-            expect(browser.getCurrentUrl()).toEqual(`${uitls.CONSTANTS.spaceURL}project`);
+            expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}project`);
         })
     };
 
     this.openEditProfile = function () {
-        objMap.googleSync.click().then(() => {
+        objMap.accountLabel.click().then(() => {
             objMap.editProfile.click().then(() => {
-                expect(objMap.accountSettingsTitle.isDisplayed()).toBe(true);
-                expect(objMap.accountSettingsTitle.toEqual(`${utils.golden_Profile_page.Title}`));
                 expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}profile`);
+                expect(objMap.accountSettingsTitle.isDisplayed()).toBe(true);
+                objMap.accountSettingsTitle.getText().then((text)=>{
+                    expect(text).toEqual(`${utils.golden.Title_profile_page}`);
+                });
             })
         })
     };
@@ -87,13 +89,30 @@ const globalFunc = function () {
 
     // working here ))
     this.syncWithGoogle = function (successAdd) {
+
+        // utils.goToUrl(`${utils.CONSTANTS.googleURL}`).then(() => {
+            // expect(objMap.googleEmail.isDisplayed()).toBe(true);
+            // expect(objMap.accountSettingsTitle.toEqual(`${utils.golden_Profile_page.Title}`));
+            // expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}profile`);
+        // });
+
         objMap.googleSync.click().then(() => {
-            utils.goToUrl(`${utils.CONSTANTS.googleURL}`).then(() => {
-                expect(objMap.googleEmail.isDisplayed()).toBe(true);
-                // expect(objMap.accountSettingsTitle.toEqual(`${utils.golden_Profile_page.Title}`));
-                // expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}profile`);
-            })
-        })
+
+            // browser.getAllWindowHandles().then(function (handles) {
+            //     this.newWindowHandle = handles[1]; // this is your new window
+            //     browser.switchTo().window(newWindowHandle).then(function () {
+            //         // fill in the form here
+            //         console.log("New URL = ", `${browser.getCurrentUrl()}`);
+            //         // expect(browser.getCurrentUrl()).toMatch(/\/url/);
+            //
+            //     });
+            // });
+
+            // expect(objMap.googleEmail.isDisplayed()).toBe(true);
+            console.log("New URL = ", `${browser.getCurrentUrl()}`);
+            // objMap.googleEmail.sendKeys("Mher@rodin.io");
+        });
+        browser.driver.sleep(10000);
     };
 
 

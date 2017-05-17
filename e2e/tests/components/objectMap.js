@@ -10,17 +10,18 @@ const TestObj = function () {
     this.passwordField  				= this.LoginContainer.element(by.model('$ctrl.formData.password'));
     this.loginButton    				= this.LoginContainer.element(by.css('.btn-submit'));
     this.wrongCredentials 				= this.LoginContainer.element(by.css('.text-wrong'));
+    this.wrongCredentials2 				= element(by.css('.ng-binding'));
 
 	// Dashboard Locators
     this.dashboardContainer         	= element(by.css('.page-dashboard'));
     this.dashboardAccountWrapper    	= this.dashboardContainer.element(by.css('.hidden-xs'));
 
-	this.Create_new_Project 			= element(by.xpath("//i[contains(@class, 'icon icon-add')]"));
-    this.add_icon 						= element(by.xpath("//*[contains(@class,'icon-add')]"));
+    // Create new project
+    this.add_icon 						= element(by.css('.icon-add'));
 
-    this.accountLabel                   = element(by.id("accountLabel"));
+    this.accountLabel                   = $('#accountLabel'); // is same as ***element(by.id('accountLabel'));***
     this.editProfile                    = element(by.xpath("//a[@data-ui-sref='app.profile']"));
-    this.accountSettingsTitle           = element(by.css("//h1[@class='title']"));
+    this.accountSettingsTitle           = element(by.xpath("//h1[@class='title']"));
     this.facebookSync                   = element(by.xpath("//button[@ng-click='$ctrl.fbSync()']"));
     this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
 
@@ -29,7 +30,7 @@ const TestObj = function () {
 
     //Google Login
     this.googleUrl                      = "gmail.com";
-    this.googleEmail		            = element(by.id("identifierId"));
+    this.googleEmail		            = $('#identifierId');    //element(by.id('identifierId'));
     this.nextButton                     = element(by.xpath("//span[text()='Next']"));
     this.googlePassword                 = element(by.xpath("//input[@name='password']"));
 
