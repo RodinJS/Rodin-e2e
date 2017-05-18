@@ -97,22 +97,27 @@ const globalFunc = function () {
         // });
 
         objMap.googleSync.click().then(() => {
+            browser.ignoreSynchronization = true;
+            // Make sure that the new window is opened and navigate to it
+            browser.getAllWindowHandles().then(function(handles){
+                browser.switchTo().window(handles[1]).then(function(){
+                    expect(objMap.googleEmail.isDisplayed()).toBe(true);
+                    expect(objMap.nextButton.isDisplayed()).toBe(true);
+                    // console.log("New URL = ", `${browser.getCurrentUrl()}`);
+                    objMap.googleEmail.sendKeys("mher@rodin.io");
+                    objMap.nextButton.click().then(() => {
+                        expect(objMap.googlePassword.isDisplayed()).toBe(true);
+                        objMap.googlePassword.sendKeys("Rr14815/*-");
+                        objMap.nextButton.click();
+                        browser.switchTo().window(handles[0])
+                    });
+                });
+            });
 
-            // browser.getAllWindowHandles().then(function (handles) {
-            //     this.newWindowHandle = handles[1]; // this is your new window
-            //     browser.switchTo().window(newWindowHandle).then(function () {
-            //         // fill in the form here
-            //         console.log("New URL = ", `${browser.getCurrentUrl()}`);
-            //         // expect(browser.getCurrentUrl()).toMatch(/\/url/);
-            //
-            //     });
-            // });
 
-            // expect(objMap.googleEmail.isDisplayed()).toBe(true);
-            console.log("New URL = ", `${browser.getCurrentUrl()}`);
-            // objMap.googleEmail.sendKeys("Mher@rodin.io");
+
         });
-        browser.driver.sleep(10000);
+        // browser.driver.sleep(10000);
     };
 
 
