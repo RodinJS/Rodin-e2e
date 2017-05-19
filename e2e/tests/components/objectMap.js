@@ -34,6 +34,7 @@ const TestObj = function () {
     this.nextButton                     = element(by.xpath("//span[text()='Next']"));
     this.googlePassword                 = element(by.xpath("//input[@name='password']"));
 
+    this.googleSynced               = element(by.xpath("div[text()='Google synced']"));
 
 
 
