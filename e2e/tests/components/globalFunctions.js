@@ -89,13 +89,6 @@ const globalFunc = function () {
 
     // working here ))
     this.syncWithGoogle = function (successAdd) {
-
-        // utils.goToUrl(`${utils.CONSTANTS.googleURL}`).then(() => {
-            // expect(objMap.googleEmail.isDisplayed()).toBe(true);
-            // expect(objMap.accountSettingsTitle.toEqual(`${utils.golden_Profile_page.Title}`));
-            // expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}profile`);
-        // });
-
         objMap.googleSync.click().then(() => {
             browser.ignoreSynchronization = true;
             // Make sure that the new window is opened and navigate to it
@@ -103,20 +96,21 @@ const globalFunc = function () {
                 browser.switchTo().window(handles[1]).then(function(){
                     expect(objMap.googleEmail.isDisplayed()).toBe(true);
                     expect(objMap.nextButton.isDisplayed()).toBe(true);
-                    // console.log("New URL = ", `${browser.getCurrentUrl()}`);
                     objMap.googleEmail.sendKeys("mher@rodin.io");
                     objMap.nextButton.click().then(() => {
-                        expect(objMap.googlePassword.isDisplayed()).toBe(true);
-                        objMap.googlePassword.sendKeys("Rr14815/*-");
-                        objMap.nextButton.click();
-                        browser.switchTo().window(handles[0])
+                        browser.driver.sleep(2000);     // TODO Should be removed and added while with timeout loop! as then expect is not soling googlePassword to be displayed problem
+                        expect(objMap.nextButton.isDisplayed()).toBe(true);
+                        expect(objMap.googlePassword.isDisplayed()).toBe(true).then(function() {
+                            objMap.googlePassword.sendKeys("Rr14815/*-");
+                            objMap.nextButton.click();
+                            browser.switchTo().window(handles[0])
+                        });
                     });
                 });
             });
-
-
-
         });
+        browser.ignoreSynchronization = false;
+
         // browser.driver.sleep(10000);
     };
 

@@ -27,19 +27,12 @@ describe('EditProfile.ts', () => {
     user = common.TESTUSERS[1].username;
     password = common.TESTUSERS[1].password;
 
-
     it('Login_with_existing_cridentals.tc', () => {
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(user, password, true);
     });
 
-    // it('Create_project_with_unique_URL.tc', () => {
-    //      globalFunc.add_project();
-    //     globalFunc.isDisplayed_Project_Fields();
-    //     // globalFunc.process_fill_project_requred_fields(common.TEMPLATENAMES[1], common.TESTPROJECTS[0].ProjectName, common.TESTPROJECTS[0].ProjectURL, common.TESTPROJECTS[0].ProjectDescription, true);
-    // });
-
-    it('Sync_with_facebook.tc', () => {
+    it('Sync_with_google.tc', () => {
         globalFunc.openEditProfile();
         globalFunc.syncWithGoogle();
     });
