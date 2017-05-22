@@ -34,7 +34,9 @@ describe('EditProfile.ts', () => {
 
     it('Sync_with_google.tc', () => {
         globalFunc.openEditProfile();
+        console.log("1. before syncWithGoogle");
         globalFunc.syncWithGoogle();
+        console.log("2. after syncWithGoogle");
     });
-
+    console.log("7. end");
 });

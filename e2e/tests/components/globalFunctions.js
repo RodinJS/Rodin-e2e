@@ -88,47 +88,56 @@ const globalFunc = function () {
 
 
     // working here ))
-    this.syncWithGoogle = function (successAdd) {
-
-        if (!expect(objMap.googleSync.isDisplayed()).toBe(true)) {
-
-            // write code to unsync from google
-
-        } else {
-            objMap.googleSync.click().then(() => {
-                browser.ignoreSynchronization = true;
-                // Make sure that the new window is opened and navigate to it
-                browser.getAllWindowHandles().then(function(handles){
-                    browser.switchTo().window(handles[1]).then(function(){
-                        expect(objMap.googleEmail.isDisplayed()).toBe(true);
+    this.syncWithGoogleFunction = function () {
+        objMap.googleSync.click().then(() => {
+            browser.ignoreSynchronization = true;
+            // Make sure that the new window is opened and navigate to it
+            browser.getAllWindowHandles().then(function(handles){
+                browser.switchTo().window(handles[1]).then(function(){
+                    expect(objMap.googleEmail.isDisplayed()).toBe(true);
+                    expect(objMap.nextButton.isDisplayed()).toBe(true);
+                    objMap.googleEmail.sendKeys("mher@rodin.io");
+                    objMap.nextButton.click().then(() => {
+                        browser.driver.sleep(2000);     // TODO Should be removed and added while with timeout loop! as then expect is not soling googlePassword to be displayed problem
                         expect(objMap.nextButton.isDisplayed()).toBe(true);
-                        objMap.googleEmail.sendKeys("mher@rodin.io");
-                        objMap.nextButton.click().then(() => {
-                            browser.driver.sleep(2000);     // TODO Should be removed and added while with timeout loop! as then expect is not soling googlePassword to be displayed problem
-                            expect(objMap.nextButton.isDisplayed()).toBe(true);
-                            expect(objMap.googlePassword.isDisplayed()).toBe(true).then(function() {
-                                objMap.googlePassword.sendKeys("Rr14815/*-");
-                                objMap.nextButton.click();
-                                // browser.switchTo().window(handles[0])
-                            });
+                        expect(objMap.googlePassword.isDisplayed()).toBe(true).then(function() {
+                            objMap.googlePassword.sendKeys("Rr14815/*-");
+                            objMap.nextButton.click();
+                            // browser.switchTo().window(handles[0])
                         });
                     });
                 });
             });
-            browser.switchTo().window(handles[0]);
-            browser.driver.sleep(2000);
-            browser.ignoreSynchronization = false;
-        }
-
-
-
-
-
+        });
+        // browser.switchTo().window(handles[0]);
+        browser.driver.sleep(2000);
+        browser.ignoreSynchronization = false;
+        console.log("3. before googleSynced");
         // expect(objMap.nextButton.isDisplayed()).toBe(true);
         expect(objMap.googleSynced.isDisplayed()).toBe(true);
         // browser.driver.sleep(10000);
-
+        console.log("4. after googleSynced");
     };
+
+    this.syncWithGoogle = function () {
+        // if (!expect(objMap.googleSync.isDisplayed()).toBe(true)) {
+        if (expect(objMap.googleSynced_link.isDisplayed()).toBe(true)) {
+            objMap.googleSynced_link.click().then(function () {
+                objMap.googleUnsyncWndTitle.getText().then((text) => {
+                    expect(text).toEqual("Unsync from google"); //TODO Should be added to golden constants!
+                });
+                expect(objMap.googleUnSync_button.isDisplayed()).toBe(true);
+                objMap.googleUnSync_button.click();
+            });
+            // write code to unsync from google
+            this.syncWithGoogleFunction();
+        } else {
+            this.syncWithGoogleFunction();
+        }
+        console.log("5. In syncWithGoogle");
+    };
+
+
 
 
 

@@ -25,6 +25,11 @@ const TestObj = function () {
     this.facebookSync                   = element(by.xpath("//button[@ng-click='$ctrl.fbSync()']"));
     this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
 
+    this.googleSynced_link              = element(by.xpath("//span[contains(@ng-click,'$ctrl.openUnSync') and contains(@ng-click,'google')]"));
+    this.googleUnsyncWndTitle           = element(by.xpath("//*[@close-modal='unsync']/*/*/*[@class='ng-binding']"));
+    this.googleUnSync_button            = element(by.xpath("//button[@ng-click='$ctrl.confirmUnsync()']"));
+    this.googleUnSync_button_cancel     = element(by.xpath("//a[@data-ng-click='$ctrl.modals.unsync = false']"));
+
     //Notification text
     this.notificationText               = element(by.xpath("div[@ng-bind-html='message']"));    //  Check .text() value
 
@@ -34,7 +39,7 @@ const TestObj = function () {
     this.nextButton                     = element(by.xpath("//span[text()='Next']"));
     this.googlePassword                 = element(by.xpath("//input[@name='password']"));
 
-    this.googleSynced               = element(by.xpath("div[text()='Google synced']"));
+    this.googleSynced                   = element(by.xpath("div[text()='Google synced']"));
 
 
 
