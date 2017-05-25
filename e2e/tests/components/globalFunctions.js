@@ -234,14 +234,14 @@ const globalFunc = function () {
             });
     };
 
-    // this function and variable is for taking browser screenshot
+    // this function is for taking browser screenshot
     this.writeScreenShot = function (data, filename) {
         let stream = fs.createWriteStream(filename);
         stream.write(new Buffer(data, 'base64'));
         stream.end();
     };
 
-    // this function for switchinf from one tab to another
+    // this function for switch from one tab to another
     this.browserTabChange = function (tabNumber) {
         browser.getAllWindowHandles().then(function (handles) {
                 let newWindowHandle = handles[tabNumber]; // this is your new window
