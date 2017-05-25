@@ -3,6 +3,7 @@
  */
 
 "use strict";
+const fs = require('fs');
 
 const utils = require('../utils/common');
 const objMap = require('../components/objectMap');
@@ -138,9 +139,6 @@ const globalFunc = function () {
     };
 
 
-
-
-
 	this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
 		objMap.Project_Template(template_name).click();
 	    objMap.Project_Name_Field.sendKeys(name);
@@ -237,9 +235,8 @@ const globalFunc = function () {
     };
 
     // this function and variable is for taking browser screenshot
-    var fs = require('fs');
     this.writeScreenShot = function (data, filename) {
-        var stream = fs.createWriteStream(filename);
+        let stream = fs.createWriteStream(filename);
         stream.write(new Buffer(data, 'base64'));
         stream.end();
     };
@@ -247,7 +244,7 @@ const globalFunc = function () {
     // this function for switchinf from one tab to another
     this.browserTabChange = function (tabNumber) {
         browser.getAllWindowHandles().then(function (handles) {
-                var newWindowHandle = handles[tabNumber]; // this is your new window
+                let newWindowHandle = handles[tabNumber]; // this is your new window
                 browser.switchTo().window(newWindowHandle);
             }); 
     };
