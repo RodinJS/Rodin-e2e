@@ -236,6 +236,22 @@ const globalFunc = function () {
             });
     };
 
+    // this function and variable is for taking browser screenshot
+    var fs = require('fs');
+    this.writeScreenShot = function (data, filename) {
+        var stream = fs.createWriteStream(filename);
+        stream.write(new Buffer(data, 'base64'));
+        stream.end();
+    };
+
+    // this function for switchinf from one tab to another
+    this.browserTabChange = function (tabNumber) {
+        browser.getAllWindowHandles().then(function (handles) {
+                var newWindowHandle = handles[tabNumber]; // this is your new window
+                browser.switchTo().window(newWindowHandle);
+            }); 
+    };
+
 };
 
 module.exports = new globalFunc();
