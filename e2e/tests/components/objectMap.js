@@ -16,6 +16,13 @@ const TestObj = function () {
     this.dashboardContainer         	= element(by.css('.page-dashboard'));
     this.dashboardAccountWrapper    	= this.dashboardContainer.element(by.css('.hidden-xs'));
 
+    // Common locators for all builds
+    this.publishDialog                  = element(by.css(".publish-modal"));
+    
+    // iOS build section
+    this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
+    this.certificatePswdDialog          = element(by.css(".modal-content"));
+
     // Create new project
     this.add_icon 						= element(by.css('.icon-add'));
 
