@@ -22,6 +22,7 @@ const TestObj = function () {
     // iOS build section
     this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
     this.certificatePswdDialog          = element(by.css(".modal-content"));
+    this.downloadBuild                  = element(by.css('.download'));
 
     // Create new project
     this.add_icon 						= element(by.css('.icon-add'));
