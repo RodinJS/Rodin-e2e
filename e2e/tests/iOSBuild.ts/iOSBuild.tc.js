@@ -5,6 +5,7 @@
 const common = require('../utils/common');
 const globalFunc = require('../components/globalFunctions');
 const objMap = require('../components/objectMap');
+const EC = protractor.ExpectedConditions;
 
 describe('Dashboard.ts', () => {
 
@@ -93,23 +94,19 @@ describe('Dashboard.ts', () => {
         this.iconFile = browser.findElement(by.id("icon-file")).sendKeys("C:\\Users\\Mariam\\Pictures\\TestPicFormats\\PNG2.PNG");
         // click on build button
         this.submitBtn.click();
-        // check that certificate password dialog popped up
-        // expect(objMap.certificatePswdDialog.isDisplayed()).toBe(true);
         // specify certificate password
         this.certPassword = element(by.model("$ctrl.project.ios.certPassword")).sendKeys("123123");
         // click on Sumbit button
         this.submitCertPass = element(by.css('[data-ng-click="$ctrl.build($event)"]')).click();
-        // wait for download build to appear
-        // browser.sleep(20000);
-
-        let EC = protractor.ExpectedConditions;
-        this.downloadBuild = element(by.css('.download'));
+ 
+        //this.downloadBuild = element(by.css('.download'));
         // waits for the download element to be visible
-        browser.wait(EC.visibilityOf(this.downloadBuild), 15000);
+        browser.wait(EC.visibilityOf(objMap.downloadBuild), 15000);
         // download build
-        this.downloadBuild.click(); 
+        objMap.downloadBuild.click(); 
+
         // wait for download build to appear
-        browser.sleep(20000);
+        browser.sleep(8000);
         // this.checkFileDownload = function(path){
         //     fs.exists(path, (exists) => {
         //     console.log(exists ? 'aaaaaaaaaaaaaaaaaaaaaaaaaaait\'s there' : 'aaaaaaaaaaaaaaaanot there!');
