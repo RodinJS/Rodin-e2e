@@ -18,9 +18,10 @@ const TestObj = function () {
 
     // Common locators for all builds
     this.publishDialog                  = element(by.css(".publish-modal"));
+    this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
+    this.publishTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(7).column('navigation.title'));
     
     // iOS build section
-    this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
     this.certificatePswdDialog          = element(by.css(".modal-content"));
     this.downloadBuild                  = element(by.css('.download'));
 
@@ -38,7 +39,7 @@ const TestObj = function () {
     this.googleUnSync_button            = element(by.xpath("//button[@ng-click='$ctrl.confirmUnsync()']"));
     this.googleUnSync_button_cancel     = element(by.xpath("//a[@data-ng-click='$ctrl.modals.unsync = false']"));
 
-    //Notification text
+    //Notification texts
     this.notificationText               = element(by.xpath("div[@ng-bind-html='message']"));    //  Check .text() value
 
     //Google Login
