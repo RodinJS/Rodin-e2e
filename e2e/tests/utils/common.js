@@ -23,6 +23,10 @@ const TESTUSERS = [
     {
         username:'wronguser',
         password:'wrongpass',
+    },
+    {
+        username:'mariam',
+        password:'Qw123456',
     }
 ];
 
