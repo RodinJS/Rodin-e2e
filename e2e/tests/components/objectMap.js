@@ -40,7 +40,8 @@ const TestObj = function () {
     this.googleUnSync_button_cancel     = element(by.xpath("//a[@data-ng-click='$ctrl.modals.unsync = false']"));
 
     //Notification texts
-    this.notificationText               = element(by.xpath("div[@ng-bind-html='message']"));    //  Check .text() value
+    this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
+
 
     //Google Login
     this.googleUrl                      = "gmail.com";
