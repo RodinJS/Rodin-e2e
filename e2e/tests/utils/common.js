@@ -27,6 +27,12 @@ const TESTUSERS = [
     {
         username:'mariam',
         password:'Qw123456',
+    },
+    // User with created 5 projects (Project limit is 5)
+    {
+        username:'mher6',
+        password:'a1234567',
+
     }
 ];
 
@@ -56,7 +62,8 @@ const SYNCACCOUNTS = [
 ];
 
 const golden = {
-    Title_profile_page: 'Account Settings'
+    Title_profile_page: 'Account Settings',
+    Max_project_count_msg: 'Maximum projects count exceeded, allowed project count 5'
 };
 
 function goToUrl(url){
