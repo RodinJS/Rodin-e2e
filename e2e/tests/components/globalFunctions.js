@@ -75,6 +75,14 @@ const globalFunc = function () {
         })
     };
 
+    this.check_notification_text = function () {
+        objMap.add_icon.click().then(() => {
+            expect(objMap.notificationText.getText().then((text)=>{
+                expect(text).toEqual(`${utils.golden.Max_project_count_msg}`);
+            }));
+        });
+    };
+
     this.openEditProfile = function () {
         objMap.accountLabel.click().then(() => {
             objMap.editProfile.click().then(() => {
