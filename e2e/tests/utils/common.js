@@ -28,11 +28,14 @@ const TESTUSERS = [
         username:'mariam',
         password:'Qw123456',
     },
-    // User with created 5 projects (Project limit is 5)
-    {
+    {   // User with created 5 projects (Project limit is 5)
         username:'mher6',
         password:'a1234567',
+    },
 
+    {   // User for Change password (Use this user, to be independent form other test cases )
+        username:'mher13',
+        password:'a1234567',
     }
 ];
 

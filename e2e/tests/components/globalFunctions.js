@@ -91,9 +91,50 @@ const globalFunc = function () {
                 objMap.accountSettingsTitle.getText().then((text)=>{
                     expect(text).toEqual(`${utils.golden.Title_profile_page}`);
                 });
+                expect(objMap.passwordTab.isDisplayed()).toBe(true);
             })
         })
     };
+
+
+    // add objMap xpaths ...
+    // passwordTab
+    // passwordString
+    // newPassword
+    // confirmPassword
+    // updatePassword
+    // passwordSuccessMsg
+    // signOutLabel
+    //
+    this.changePasswordTo = function (password) {
+        objMap.passwordTab.click().then(() => {
+            expect(objMap.passwordString.isDisplayed()).toBe(true);
+            objMap.passwordString.getText().then((text) => {
+                expect(text).toEqual("Change Password"); //TODO Should be added to golden constants!
+            });
+        });
+        objMap.newPassword.sendKeys(password);
+        objMap.confirmPassword.sendKeys(password);
+        objMap.updatePassword.click().then(() => {
+            expect(objMap.passwordSuccessMsg.isDisplayed()).toBe(true);
+            objMap.passwordSuccessMsg.getText().then((text) => {
+                expect(text).toEqual("Password successfully updated"); //TODO Should be added to golden constants!
+            });
+        });
+    };
+
+    // add objMap xpaths ...
+    // signOutLabel
+    this.signOut = function () {
+        objMap.accountLabel.click().then(() => {
+            objMap.signOutLabel.click().then(() => {
+                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}login`);
+                this.isDisplayed_Login_Fields();        // TODO Check if is working
+            })
+        })
+    };
+
+
 
 
     // working here ))

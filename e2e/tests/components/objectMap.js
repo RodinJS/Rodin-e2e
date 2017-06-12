@@ -28,11 +28,21 @@ const TestObj = function () {
     // Create new project
     this.add_icon 						= element(by.css('.icon-add'));
 
+    // Edit profile
     this.accountLabel                   = $('#accountLabel'); // is same as ***element(by.id('accountLabel'));***
     this.editProfile                    = element(by.xpath("//a[@data-ui-sref='app.profile']"));
     this.accountSettingsTitle           = element(by.xpath("//h1[@class='title']"));
     this.facebookSync                   = element(by.xpath("//button[@ng-click='$ctrl.fbSync()']"));
     this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
+
+    this.passwordTab                    = element(by.xpath("//a[text()='Password']"));
+    this.passwordString                 = element(by.xpath("//h3[text()='Change Password']"));
+    this.newPassword                    = element(by.xpath("//input[@data-ng-model='$ctrl.newPassword.password']"));
+    this.confirmPassword                = element(by.xpath("//input[@data-ng-model='$ctrl.newPassword.confirm']"));
+    this.updatePassword                 = element(by.xpath("//button[contains(text(), 'Update Password')]"));
+    this.passwordSuccessMsg             = element(by.xpath("//div[@ng-bind-html='message']"));
+    this.signOutLabel                   = element(by.xpath("//a[@data-ng-click='$ctrl.logout()']"));
+
 
     this.googleSynced_link              = element(by.xpath("//span[contains(@ng-click,'$ctrl.openUnSync') and contains(@ng-click,'google')]"));
     this.googleUnsyncWndTitle           = element(by.xpath("//*[@close-modal='unsync']/*/*/*[@class='ng-binding']"));
@@ -41,6 +51,8 @@ const TestObj = function () {
 
     //Notification texts
     this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
+
+
 
 
     //Google Login
