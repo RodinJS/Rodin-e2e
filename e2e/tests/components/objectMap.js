@@ -53,6 +53,8 @@ const TestObj = function () {
     this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
 
 
+    //Loaders
+    this.loaderPresence                 = element(by.xpath("//div[@class='loaderContent']"));
 
 
     //Google Login

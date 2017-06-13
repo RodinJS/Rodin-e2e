@@ -39,6 +39,36 @@ const TESTUSERS = [
     }
 ];
 
+const USERS = {
+    Xach: {
+        username: 'xgharibyan',
+        password: 'password123456'
+    },
+    MherS: {
+        username: 'mhers',
+        password: 'a1234567',
+    },
+    Wrong: {
+        username: 'wronguser',
+        password: 'wrongpass',
+    },
+    Mariam: {
+        username: 'mariam',
+        password: 'Qw123456',
+    },
+    Limit5: {   // User with created 5 projects (Project limit is 5)
+        username: 'mher6',
+        password: 'a1234567',
+    },
+    PwdChange: {   // User for Change password (Use this user, to be independent form other test cases )
+        username: 'mher13',
+        password: 'a1234567',
+    }
+};
+
+
+
+
 const num = Math.random()*10000000+1;
 const TESTPROJECTS = [
     {
@@ -85,6 +115,7 @@ module.exports = {
     inspectLog:inspectLog,
     CONSTANTS:CONSTANTS,
     TESTUSERS:TESTUSERS,
+    USERS:USERS,
     TESTPROJECTS:TESTPROJECTS,
     TEMPLATENAMES:TEMPLATENAMES,
     SYNCACCOUNTS:SYNCACCOUNTS,
