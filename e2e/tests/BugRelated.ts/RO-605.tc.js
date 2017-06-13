@@ -31,9 +31,10 @@ describe('BugRelated.ts', () => {
         globalFunc.changePasswordTo(new_password);
         globalFunc.signOut();
         globalFunc.processLogin(common.TESTUSERS[5].username, new_password, true);
+        globalFunc.openEditProfile();
         globalFunc.changePasswordTo(common.TESTUSERS[5].password);
+        globalFunc.signOut();
         globalFunc.processLogin(common.TESTUSERS[5].username, common.TESTUSERS[5].password, true);
-
     });
 
 });
