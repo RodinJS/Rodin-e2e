@@ -70,6 +70,7 @@ const USERS = {
 
 
 const num = Math.random()*10000000+1;
+// Old syntax
 const TESTPROJECTS = [
     {
         ProjectName:'name'+Math.floor(num),
@@ -78,6 +79,16 @@ const TESTPROJECTS = [
     }
 ];
 
+// New
+const PROJECTS = {
+    Name:'name'+Math.floor(num),
+    URL:'url'+Math.floor(num),
+    Description:'description'
+};
+
+
+
+// Old syntax
 const TEMPLATENAMES = [
     'Empty Project',
     'Simple Project',
@@ -86,6 +97,34 @@ const TEMPLATENAMES = [
     'Video Control Panel',
     'Drag n Drop'
 ];
+
+// New syntax
+const TEMPLATES = {
+    Empty: {
+        name: 'Blank'               // 'Empty Project'
+    },
+    Basic: {
+        name: 'Basic'               // 'Simple Project'
+    },
+    DragDrop: {
+        name: "Drag'n'Drop"         // 'Drag n Drop'
+    },
+    PresentationHall: {
+        name: "Presentation Hall"
+    },
+    Interior: {
+        name: "Interior"
+    },
+    VideoPlayer360: {
+        name: "360 Video Player"
+    },
+    VideoGallery: {
+        name: "Video Gallery"
+    },
+    PullFromGitHub: {
+        name: "Pull From GitHub"
+    }
+};
 
 const SYNCACCOUNTS = [
     {
@@ -117,7 +156,9 @@ module.exports = {
     TESTUSERS:TESTUSERS,
     USERS:USERS,
     TESTPROJECTS:TESTPROJECTS,
+    PROJECTS:PROJECTS,
     TEMPLATENAMES:TEMPLATENAMES,
+    TEMPLATES:TEMPLATES,
     SYNCACCOUNTS:SYNCACCOUNTS,
     golden:golden
 };

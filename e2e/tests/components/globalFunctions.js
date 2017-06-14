@@ -10,7 +10,7 @@ const objMap = require('../components/objectMap');
 
 const globalFunc = function () {
 
-    //TODO ask Raffi or Khach about moving these functions to objectMap
+    // TODO move these xpaths to objectMap.js
     // Function to generate (project settings), (project item), ... xpaths depending on project name.
     this.projectSettings              = function  (project_name) {
         return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
@@ -203,6 +203,10 @@ const globalFunc = function () {
                 //});
             }
         })
+    };
+
+	this.projectsCountInDashboard = function () {
+	    return objMap.allProjects.count();
     };
 
     this.open_project_settings = function (project_name) {

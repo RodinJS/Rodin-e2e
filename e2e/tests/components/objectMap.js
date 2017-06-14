@@ -67,6 +67,13 @@ const TestObj = function () {
 
 
 
+    this.projectName = function(project_name){
+        return element(by.xpath(`//div[@class='dashboard-content-item']/h3/a[text()[contains(.,'${project_name}')]]`));
+    };
+
+    this.allProjects                    = element.all(by.xpath("//div[@class='dashboard-content-item']/h3/a"));
+
+
     // // Function to generate (project settings), (project item), ... xpaths depending on project name.
     // this.projectSettings              = function  (project_name) {
     //     return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
@@ -86,9 +93,14 @@ const TestObj = function () {
 
 
 	// Project Locators
-    this.create_project_title           = element(by.xpath("//*[text()='Select template to create a project OR import project from GitHub']"));
+
+    //TODO check why is not working
+    //this.create_project_title           = element(by.xpath("//*[text()='Select template to create a project OR import project from GitHub']"));
+    this.create_project_title           = element(by.xpath("//*[text()[contains(.,'Select template to create a project OR import project from')]]"));
+
     this.Project_Template               = function (template_name) {
-        return element(by.xpath(`//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(),'${template_name}')]/parent::label/parent::div`));
+        // return element(by.xpath(`//span[contains(@ng-class,'$ctrl.githubUrlValid') and contains(text(),'${template_name}')]/parent::label/parent::div`));    // Changed old
+        return element(by.xpath(`//span[contains(@class,'template-name') and contains(text(),'${template_name}')]/parent::label/parent::div`));
     };
 
     //this.Project_Name_Field 			= element(by.xpath("//input[@data-ng-model='$ctrl.project.displayName']"));
@@ -99,7 +111,10 @@ const TestObj = function () {
     
   //  this.project_description 			= element(by.xpath("//*[@id='area']"));
 	this.project_description            = element(by.model('projectDescription'));
-    this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save()']"));
+
+
+    //this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save()']"));
+    this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save(project.$valid)']"));   // changed
 
 	this.publicProjectCheckbox          = element(by.xpath("//span[@data-ng-model='$ctrl.projectPublic']"));
 	this.currentVersionLink             = element(by.xpath("//a[@class='text-yellow ng-binding']"));
