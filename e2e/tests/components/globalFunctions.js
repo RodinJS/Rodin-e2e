@@ -206,7 +206,7 @@ const globalFunc = function () {
     };
 
 	this.projectsCountInDashboard = function () {
-	    return objMap.allProjects.count();
+         return objMap.allProjects.count();
     };
 
     this.open_project_settings = function (project_name) {
