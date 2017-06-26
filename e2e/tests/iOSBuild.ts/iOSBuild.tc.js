@@ -16,6 +16,7 @@ let icon = __dirname + "\\resources\\uxtaxchik.png";
 describe('iOSBuild.ts', () => {
 
     beforeEach(() => {
+    	browser.driver.manage().window().maximize();
         common.goToUrl('login');
     });
 
@@ -34,10 +35,12 @@ describe('iOSBuild.ts', () => {
 
     });
 
-    xit('iOS_publish_before_and_build.tc', () => {
+    it('iOS_publish_before_and_build.tc', () => {
 
         // go to created project settings
-    	globalFunc.open_project_settings('iOSProj1');
+    	//globalFunc.open_project_settings('iOSProj1');
+    	// index starts with 2
+    	globalFunc.open_project_settings_byIndex(3);
         
         // click on iOS tab
         objMap.iosTab.click();
@@ -60,7 +63,7 @@ describe('iOSBuild.ts', () => {
         this.publishBtn.click();
         
         // click on publish: URL SHOULD BE CHANGED TO TEST ACCOUNT
-        this.publishURL = element(by.linkText("https://rodin.space/mhers/iosappprojurl1"));
+        this.publishURL = element(by.linkText("https://rodin.space/"+common.TESTUSERS[3].username+"/iosurl1"));
 
      	// change focus on new opened tab
      	this.publishURL.click();
@@ -104,13 +107,16 @@ describe('iOSBuild.ts', () => {
         objMap.downloadBuild.click(); 
         
         // wait for download build to appear
-        browser.sleep(8000);
+       browser.sleep(8000);
     });
 
-    xit('iOS_publish_and_build.tc', () => {
-        // go to created project settings
-        globalFunc.open_project_settings('iOSProj2');
-        
+    it('iOS_publish_and_build.tc', () => {
+        //globalFunc.open_project_settings('iOSProj2');
+        element(by.linkText('Dashboard')).click();
+
+		// go to created iOSProj2 project's settings
+        globalFunc.open_project_settings_byIndex(2);
+
         // click on iOS tab
         objMap.iosTab.click();
         
@@ -145,7 +151,7 @@ describe('iOSBuild.ts', () => {
         objMap.publishTab.click();
 
         // click on publish: URL SHOULD BE CHANGED TO TEST ACCOUNT
-        this.publishURL = element(by.linkText("https://rodin.space/mhers/iosappprojurl2"));
+        this.publishURL = element(by.linkText("https://rodin.space/"+common.TESTUSERS[3].username+"/iosurl2"));
 
         // change focus on new opened tab
         this.publishURL.click();
