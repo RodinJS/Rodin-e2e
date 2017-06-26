@@ -234,10 +234,13 @@ const globalFunc = function () {
         objMap.add_icon.click();
 
         // Fill all required fields
-        this.fillProjectRequiredFields(template_name, project_name, project_url, project_description, gitHub_url)
+        this.fillProjectRequiredFields(template_name, project_name, project_url, project_description, gitHub_url);
 
         // click on Save and Get Started
         objMap.save_and_get_started_button.click();
+
+        // Message should pop up that project is created
+        expect(objMap.messagePopup.getText()).toBe('Project created');
 
     }; 
 
@@ -262,6 +265,23 @@ const globalFunc = function () {
         })
     };
 
+    this.open_project_settings_byIndex = function (index)
+    {
+
+        // TODO this should be changed to more proper way
+        // Currently in main function browser maximize function is used to make all elemenets visible.
+        
+        // Get project by index -> Last one is first with index 2 in the list
+        this.projectSettingsByIndex = browser.findElement(by.xpath("//div[contains(@class,'row')]/div["+index+"]/div/div/div[2]"));
+        // hover on element to be visible
+        browser.actions().mouseMove(this.projectSettingsByIndex).perform();
+        
+        // this is required as sometimes object is not being found.
+        this.projectSettingsByIndex = browser.findElement(by.xpath("//div[contains(@class,'row')]/div["+index+"]/div/div/div[2]/ul[2]/li/a/i"));
+        
+        // click on project settings by its index
+        this.projectSettingsByIndex.click();
+    }
 
     // Is not working: ERROR:  Failed: Error while waiting for Protractor to sync with the page: "Cannot read property '$$testability' of undefined"
     // Waiting for 5.1.2 version of protractor
