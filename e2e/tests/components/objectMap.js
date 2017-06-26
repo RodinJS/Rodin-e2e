@@ -50,8 +50,9 @@ const TestObj = function () {
     this.googleUnSync_button_cancel     = element(by.xpath("//a[@data-ng-click='$ctrl.modals.unsync = false']"));
 
     //Notification texts
-    this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
-
+	// Be Aware that I've chnaged this by binding.
+    //this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
+	this.messagePopup                   = element(by.binding('message'));
 
     //Loaders
     this.loaderPresence                 = element(by.xpath("//div[@class='loaderContent']"));
