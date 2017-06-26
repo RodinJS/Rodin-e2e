@@ -25,19 +25,19 @@ describe('iOSBuild.ts', () => {
     });
 	
     it('Create_project_with_unique_URL.tc', () => {
-        globalFunc.add_project();
-        globalFunc.isDisplayed_Project_Fields();
-        globalFunc.process_fill_project_requred_fields(common.TEMPLATENAMES[1], "iOSAppProj1", "iOSAppProjUrl1", common.TESTPROJECTS[0].ProjectDescription, true);
 
-        globalFunc.add_project();
-        globalFunc.isDisplayed_Project_Fields();
-        globalFunc.process_fill_project_requred_fields(common.TEMPLATENAMES[2], "iOSAppProj2", "iOSAppProjUrl2", common.TESTPROJECTS[0].ProjectDescription, true);
+    	// create a new project for iOS Build   	
+    	globalFunc.createProject('Basic', 'iOSProj1', 'iosurl1','ios project 1 description');
+
+    	// create a new project for iOS Build   	
+    	globalFunc.createProject("Drag'n'Drop", 'iOSProj2', 'iosurl2','ios project 2 description');
+
     });
 
-    it('iOS_publish_before_and_build.tc', () => {
+    xit('iOS_publish_before_and_build.tc', () => {
 
         // go to created project settings
-    	globalFunc.open_project_settings('iOSAppProj1');
+    	globalFunc.open_project_settings('iOSProj1');
         
         // click on iOS tab
         objMap.iosTab.click();
@@ -107,9 +107,9 @@ describe('iOSBuild.ts', () => {
         browser.sleep(8000);
     });
 
-    it('iOS_publish_and_build.tc', () => {
+    xit('iOS_publish_and_build.tc', () => {
         // go to created project settings
-        globalFunc.open_project_settings('iOSAppProj2');
+        globalFunc.open_project_settings('iOSProj2');
         
         // click on iOS tab
         objMap.iosTab.click();
