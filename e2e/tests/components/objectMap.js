@@ -103,6 +103,40 @@ const TestObj = function () {
         return element(by.xpath(`//span[contains(@class,'template-name') and contains(text(),'${template_name}')]/parent::label/parent::div`));
     };
 
+    this.project_tempalte               = function (template_name) 
+    {
+        switch(template_name) 
+        {
+            case 'Blank':
+                return element(by.repeater('project in list').row(0).column('project.name')); 
+
+            case 'Basic':
+                return element(by.repeater('project in list').row(1).column('project.name')); 
+                
+            case "Drag'n'Drop":
+                return element(by.repeater('project in list').row(2).column('project.name')); 
+            
+            case 'Presentation Hall':
+                return element(by.repeater('project in list').row(3).column('project.name')); 
+                
+            case 'Interior':
+                return element(by.repeater('project in list').row(4).column('project.name')); 
+                
+            case '360 Video Player':
+                return element(by.repeater('project in list').row(5).column('project.name')); 
+                 
+            case 'Video Gallery':
+                return element(by.repeater('project in list').row(6).column('project.name')); 
+                 
+            case 'Pull From GitHub':
+                return element(by.repeater('project in list').row(7).column('project.name')); 
+                                                                                                
+            default:
+                console.log('!!!PROJECT TEMPLATE NAMES ARE CHANGED!!!');
+                return element(by.repeater('project in list').row(0).column('project.name'));
+        }      
+    }
+
     //this.Project_Name_Field 			= element(by.xpath("//input[@data-ng-model='$ctrl.project.displayName']"));
 	this.Project_Name_Field             = element(by.model('$ctrl.project.displayName'));
     
@@ -112,6 +146,7 @@ const TestObj = function () {
   //  this.project_description 			= element(by.xpath("//*[@id='area']"));
 	this.project_description            = element(by.model('projectDescription'));
 
+    this.gitHub_URL                     = element(by.model('$ctrl.project.githubUrl'));
 
     //this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save()']"));
     this.save_and_get_started_button 	= element(by.xpath("//button[@data-ng-click='$ctrl.save(project.$valid)']"));   // changed
