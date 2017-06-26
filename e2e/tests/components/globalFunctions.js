@@ -188,21 +188,63 @@ const globalFunc = function () {
     };
 
 
-	this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
-		objMap.Project_Template(template_name).click();
-	    objMap.Project_Name_Field.sendKeys(name);
-        objMap.project_URL.sendKeys(url);
-        objMap.project_description.sendKeys(description);
-        objMap.save_and_get_started_button.click().then(() => {
-            if(successCreate){
-                expect(objMap.dashboardContainer.isDisplayed()).toBe(true);
-                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}dashboard`);
-				// Should be added project name validation
-                //this.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
-                //    expect(value.username).toEqual(username);
-                //});
-            }
-        })
+	// this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
+	// 	objMap.Project_Template(template_name).click();
+	    
+ //        objMap.Project_Name_Field.sendKeys(name);
+ //        objMap.project_URL.sendKeys(url);
+ //        objMap.project_description.sendKeys(description);
+ //        objMap.save_and_get_started_button.click().then(() => {
+ //            if(successCreate){
+ //                expect(objMap.dashboardContainer.isDisplayed()).toBe(true);
+ //                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}dashboard`);
+	// 			// Should be added project name validation
+ //                //this.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
+ //                //    expect(value.username).toEqual(username);
+ //                //});
+ //            }
+ //        })
+ //    };
+
+    this.fillProjectRequiredFields = function (template_name, project_name, project_url, project_description, gitHub_url = '')
+    {
+        // select template
+        objMap.project_tempalte(template_name).click();
+
+        // type project name
+        objMap.Project_Name_Field.sendKeys(project_name);
+        
+        // type project URL
+        objMap.project_URL.sendKeys(project_url);
+
+        // type project description
+        objMap.project_description.sendKeys(project_description);
+
+        // if gitHub template is used also specify GitHub URL
+        if(template_name == 'Pull From GitHub')
+        {
+            objMap.gitHub_URL = gitHub_url;
+        }
+
+    };
+
+    this.createProject = function (template_name, project_name, project_url, project_description, gitHub_url = '')
+    {
+        // click on + button to create a project
+        objMap.add_icon.click();
+
+        // Fill all required fields
+        this.fillProjectRequiredFields(template_name, project_name, project_url, project_description, gitHub_url)
+
+        // click on Save and Get Started
+        objMap.save_and_get_started_button.click();
+
+    }; 
+
+    this.isProjectCreated = function(project_name)
+    {
+        // TODO
+        // check that project with its name is added in dashboard
     };
 
 	this.projectsCountInDashboard = function () {
