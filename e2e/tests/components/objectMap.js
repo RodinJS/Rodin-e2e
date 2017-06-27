@@ -52,7 +52,7 @@ const TestObj = function () {
     //Notification texts
 	// Be Aware that I've chnaged this by binding.
     //this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
-	this.messagePopup                   = element(by.binding('message'));
+	this.notificationsArray             = element.all(by.binding('message'));
 
     //Loaders
     this.loaderPresence                 = element(by.xpath("//div[@class='loaderContent']"));
