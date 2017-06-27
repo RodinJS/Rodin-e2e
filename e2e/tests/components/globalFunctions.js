@@ -254,6 +254,19 @@ const globalFunc = function () {
          return objMap.allProjects.count();
     };
 
+    this.searchProject = function (searchText) {
+        objMap.searchField.sendKeys(searchText).then(() => {
+
+            // TODO Sleep should be removed and "search is done" successfully logic should be added here!!!
+            browser.driver.sleep(2000);
+
+            objMap.allProjects.count().then(function(count){
+                expect(count).toEqual(1);
+                console.log("INFO: Found Projects after search of '" + searchText + "' is: " + count);
+            });
+        });
+    };
+
     this.open_project_settings = function (project_name) {
         browser.actions().mouseMove(this.projectItem(project_name)).perform();
         this.projectSettings(project_name).click().then(() => {
@@ -281,7 +294,7 @@ const globalFunc = function () {
         
         // click on project settings by its index
         this.projectSettingsByIndex.click();
-    }
+    };
 
     // Is not working: ERROR:  Failed: Error while waiting for Protractor to sync with the page: "Cannot read property '$$testability' of undefined"
     // Waiting for 5.1.2 version of protractor

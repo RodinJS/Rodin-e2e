@@ -72,6 +72,8 @@ const TestObj = function () {
         return element(by.xpath(`//div[@class='dashboard-content-item']/h3/a[text()[contains(.,'${project_name}')]]`));
     };
 
+    // Dashboard
+    this.searchField                   = element.all(by.xpath("//input[@data-ng-change='$ctrl.search()']"));
     this.allProjects                    = element.all(by.xpath("//div[@class='dashboard-content-item']/h3/a"));
 
 
@@ -136,7 +138,7 @@ const TestObj = function () {
                 console.log('!!!PROJECT TEMPLATE NAMES ARE CHANGED!!!');
                 return element(by.repeater('project in list').row(0).column('project.name'));
         }      
-    }
+    };
 
     //this.Project_Name_Field 			= element(by.xpath("//input[@data-ng-model='$ctrl.project.displayName']"));
 	this.Project_Name_Field             = element(by.model('$ctrl.project.displayName'));
