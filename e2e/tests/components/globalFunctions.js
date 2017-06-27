@@ -188,7 +188,7 @@ const globalFunc = function () {
         console.log("5. In syncWithGoogle");
     };
 
-
+    //TODO there is another function for this below this function: "fillProjectRequiredFields"
 	// this.process_fill_project_requred_fields = function (template_name, name, url, description, successCreate) {
 	// 	objMap.Project_Template(template_name).click();
 	    
@@ -229,7 +229,7 @@ const globalFunc = function () {
 
     };
 
-    this.createProject = function (template_name, project_name, project_url, project_description, gitHub_url = '')
+    this.createProject = function (template_name, project_name, project_url, project_description, gitHub_url = '', gitHub_synced = false)
     {
         // click on + button to create a project
         objMap.add_icon.click();
@@ -241,7 +241,17 @@ const globalFunc = function () {
         objMap.save_and_get_started_button.click();
 
         // Message should pop up that project is created
-        expect(objMap.messagePopup.getText()).toBe('Project created');
+        if(gitHub_synced)
+        {
+        	expect(objMap.notificationsArray.count()).toBe(1);
+        	expect(objMap.notificationsArray.get(0).getText()).toBe('Project created');
+        	
+        } else {
+        	expect(objMap.notificationsArray.count()).toBe(2);
+        	expect(objMap.notificationsArray.get(0).getText()).toBe('GitHub account not linked to this user!');
+        	expect(objMap.notificationsArray.get(1).getText()).toBe('Project created');
+        }
+        
 
     }; 
 
