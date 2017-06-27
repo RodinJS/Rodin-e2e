@@ -26,7 +26,8 @@ const globalFunc = function () {
     };
 
     this.projectItem                   = function (project_name) {
-        return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+        // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+        return element(by.xpath(`//div[@class='dashboard-content-item']/h3/a[text()[contains(.,'${project_name}')]]/parent::h3/parent::div/*/*/*/a[@class='item-title-link']`));
     };
 
     // Editor Page

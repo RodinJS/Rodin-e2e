@@ -41,8 +41,8 @@ describe('Editor.ts', () => {
     // });
 
     // Fixed Project to save time
-    let project_name = "name4187011";
-    let project_url = "url4187011";
+    let project_name = "name6155421";
+    let project_url = "url6155421";
 
     it('Add_new_project_appears_in_editor_dropdown_list.tc', () => {
 
