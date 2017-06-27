@@ -28,10 +28,10 @@ describe('iOSBuild.ts', () => {
     it('Create_project_with_unique_URL.tc', () => {
 
     	// create a new project for iOS Build   	
-    	globalFunc.createProject('Basic', 'iOSProj1', 'iosurl1','ios project 1 description');
+    	globalFunc.createProject('Basic', 'iOSProj1', 'iosurl1','ios project 1 description', "", true);
 
     	// create a new project for iOS Build   	
-    	globalFunc.createProject("Drag'n'Drop", 'iOSProj2', 'iosurl2','ios project 2 description');
+    	globalFunc.createProject("Drag'n'Drop", 'iOSProj2', 'iosurl2','ios project 2 description', "", true);
 
     });
 
@@ -111,8 +111,10 @@ describe('iOSBuild.ts', () => {
     });
 
     it('iOS_publish_and_build.tc', () => {
-        //globalFunc.open_project_settings('iOSProj2');
-        element(by.linkText('Dashboard')).click();
+        //go to Dashboard
+        element(by.linkText('Dashboard')).click().then(() => {
+  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+  		});
 
 		// go to created iOSProj2 project's settings
         globalFunc.open_project_settings_byIndex(2);
