@@ -35,15 +35,18 @@ describe('BugRelated.ts', () => {
 
         project_name = common.PROJECTS.Name;
         project_url = common.PROJECTS.URL;
+        project_description = common.PROJECTS.Description;
 
-        globalFunc.add_project();
-        globalFunc.isDisplayed_Project_Fields();
-        globalFunc.process_fill_project_requred_fields(
-            common.TEMPLATES.VideoGallery.name,
-            project_name,
-            project_url,
-            common.PROJECTS.Description, true
-        );
+        globalFunc.createProject('Video Gallery', project_name, project_url, project_description);
+
+        // globalFunc.add_project();
+        // globalFunc.isDisplayed_Project_Fields();
+        // globalFunc.process_fill_project_requred_fields(
+        //     common.TEMPLATES.VideoGallery.name,
+        //     project_name,
+        //     project_url,
+        //     common.PROJECTS.Description, true
+        // );
 
         globalFunc.searchProject(project_name);
 
