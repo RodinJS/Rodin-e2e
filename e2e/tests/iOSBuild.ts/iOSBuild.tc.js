@@ -21,6 +21,7 @@ describe('iOSBuild.ts', () => {
     });
 
     it('Login_with_existing_cridentals.tc', () => {
+    	// Login into user account
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(common.TESTUSERS[3].username, common.TESTUSERS[3].password, true);
     });
@@ -40,7 +41,7 @@ describe('iOSBuild.ts', () => {
         // go to created project settings
     	//globalFunc.open_project_settings('iOSProj1');
     	// index starts with 2
-    	globalFunc.open_project_settings_byIndex(3);
+    	globalFunc.open_project_settings("iOSProj1");
         
         // click on iOS tab
         objMap.iosTab.click();
@@ -117,7 +118,7 @@ describe('iOSBuild.ts', () => {
   		});
 
 		// go to created iOSProj2 project's settings
-        globalFunc.open_project_settings_byIndex(2);
+        globalFunc.open_project_settings("iOSProj2");
 
         // click on iOS tab
         objMap.iosTab.click();
@@ -174,6 +175,17 @@ describe('iOSBuild.ts', () => {
         browser.takeScreenshot().then((png) => {
             globalFunc.writeScreenShot(png, 'screenshots/iosAppProjURL2_2.png');
         });
+
+    });
+
+    it('Cleanup.tc', () => {
+    	//go to Dashboard
+    	element(by.linkText('Dashboard')).click().then(() => {
+  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+  		});
+
+        globalFunc.delete_project("iOSProj1",true);
+        globalFunc.delete_project("iOSProj2",true);
 
     });
 
