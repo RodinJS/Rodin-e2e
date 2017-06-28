@@ -73,8 +73,13 @@ const TestObj = function () {
     };
 
     // Dashboard
-    this.searchField                   = element.all(by.xpath("//input[@data-ng-change='$ctrl.search()']"));
+    this.searchField                    = element.all(by.xpath("//input[@data-ng-change='$ctrl.search()']"));
     this.allProjects                    = element.all(by.xpath("//div[@class='dashboard-content-item']/h3/a"));
+    
+    // "Delete" Modal elements
+    this.deleteModal                    = element(by.xpath("//div[@class='modal-header']/p[text()='Delete this project ?']/../.."));
+    this.cancelBtn                      = this.deleteModal.element(by.className('btn btn-cancel'));;
+    this.deleteBtn                      = this.deleteModal.element(by.className('btn btn-negative'));
 
 
     // // Function to generate (project settings), (project item), ... xpaths depending on project name.
