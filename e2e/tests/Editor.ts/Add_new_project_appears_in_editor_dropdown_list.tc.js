@@ -22,36 +22,22 @@ describe('Editor.ts', () => {
     user = common.TESTUSERS[1].username;
     password = common.TESTUSERS[1].password;
 
-
     it('Login_with_existing_cridentals.tc', () => {
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(user, password, true);
     });
 
-    // template_name = common.TEMPLATENAMES[1];
-    // project_name = common.TESTPROJECTS[0].ProjectName;
-    // project_url = common.TESTPROJECTS[0].ProjectURL;
-    // project_description = common.TESTPROJECTS[0].ProjectDescription;
+    project_name = common.PROJECTS.Name;
+    project_url = common.PROJECTS.URL;
+    project_description = common.PROJECTS.Description;
 
-
-    // it('Create_project_with_unique_URL.tc', () => {
-    //     globalFunc.add_project();
-    //     globalFunc.isDisplayed_Project_Fields();
-    //     globalFunc.process_fill_project_requred_fields(template_name, project_name, project_url, project_description, true);
-    // });
-
-    // Fixed Project to save time
-    let project_name = "name6155421";
-    let project_url = "url6155421";
+    it('Create_project_with_unique_URL.tc', () => {
+        globalFunc.createProject('Video Gallery', project_name, project_url, project_description);
+    });
 
     it('Add_new_project_appears_in_editor_dropdown_list.tc', () => {
-
+        // TODO this part is not working due to protractor issue: look in globalFunc lib
         globalFunc.open_project_in_editor(user, project_name, project_url);
-        //
-        // globalFunc.open_project_settings(project_name);
-        // globalFunc.publicProject(user, project_url);
-        // globalFunc.UnPublicProject(user, project_url);
-        // globalFunc.openUnPublicProject(user, project_url);
     });
 
 });
