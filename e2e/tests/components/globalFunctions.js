@@ -139,19 +139,21 @@ const globalFunc = function () {
 
 
     // working here ))
-    this.syncWithGoogleFunction = function () {
+    // this.syncWithGoogleFunction = function () {
+    function syncWithGoogleFunction() {
         objMap.googleSync.click().then(() => {
             browser.ignoreSynchronization = true;
             // Make sure that the new window is opened and navigate to it
-            browser.getAllWindowHandles().then(function(handles){
-                browser.switchTo().window(handles[1]).then(function(){
+            browser.getAllWindowHandles().then(function (handles) {
+                browser.switchTo().window(handles[1]).then(function () {
                     expect(objMap.googleEmail.isDisplayed()).toBe(true);
                     expect(objMap.nextButton.isDisplayed()).toBe(true);
+                    // TODO this email hard code should be changed to test user and added in constants!!
                     objMap.googleEmail.sendKeys("mher@rodin.io");
                     objMap.nextButton.click().then(() => {
                         browser.driver.sleep(2000);     // TODO Should be removed and added while with timeout loop! as then expect is not soling googlePassword to be displayed problem
                         expect(objMap.nextButton.isDisplayed()).toBe(true);
-                        expect(objMap.googlePassword.isDisplayed()).toBe(true).then(function() {
+                        expect(objMap.googlePassword.isDisplayed()).toBe(true).then(function () {
                             objMap.googlePassword.sendKeys("Rr14815/*-");
                             objMap.nextButton.click();
                             // browser.switchTo().window(handles[0])
@@ -163,29 +165,40 @@ const globalFunc = function () {
         // browser.switchTo().window(handles[0]);
         browser.driver.sleep(2000);
         browser.ignoreSynchronization = false;
-        console.log("3. before googleSynced");
+        console.log("2. before googleSynced");
         // expect(objMap.nextButton.isDisplayed()).toBe(true);
         expect(objMap.googleSynced.isDisplayed()).toBe(true);
         // browser.driver.sleep(10000);
-        console.log("4. after googleSynced");
-    };
+        console.log("3. after googleSynced");
+    // };
+    }
 
     this.syncWithGoogle = function () {
         // if (!expect(objMap.googleSync.isDisplayed()).toBe(true)) {
-        if (expect(objMap.googleSynced_link.isDisplayed()).toBe(true)) {
-            objMap.googleSynced_link.click().then(function () {
-                objMap.googleUnsyncWndTitle.getText().then((text) => {
-                    expect(text).toEqual("Unsync from google"); //TODO Should be added to golden constants!
+        // if (expect(objMap.googleSynced_link.isDisplayed()).toBe(true)) {
+        objMap.googleSynced_link.isPresent().then(function(isPresent) {
+            if (isPresent) {
+                console.log("objMap.googleSynced_link.isPresent()");
+                objMap.googleSynced_link.click().then(function () {
+                    objMap.googleUnsyncWndTitle.getText().then((text) => {
+                        expect(text).toEqual("Unsync from google"); //TODO Should be added to golden constants!
+                    });
+                    expect(objMap.googleUnSync_button.isDisplayed()).toBe(true);
+                    objMap.googleUnSync_button.click();
                 });
-                expect(objMap.googleUnSync_button.isDisplayed()).toBe(true);
-                objMap.googleUnSync_button.click();
-            });
-            // write code to unsync from google
-            this.syncWithGoogleFunction();
-        } else {
-            this.syncWithGoogleFunction();
-        }
-        console.log("5. In syncWithGoogle");
+                // write code to unsync from google
+                syncWithGoogleFunction();
+            } else {
+                syncWithGoogleFunction();
+            }
+        });
+
+        console.log("4. In syncWithGoogle");
+        objMap.googleSynced_link.getText().then((text)=> {
+            // TODO this email hard code should be changed to test user and added in constants!!
+            expect(text).toEqual("Synced as (mher@rodin.io)")
+        });
+        // console.log("5. After validate");
     };
 
     //TODO there is another function for this below this function: "fillProjectRequiredFields"

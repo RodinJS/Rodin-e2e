@@ -36,7 +36,9 @@ describe('EditProfile.ts', () => {
         globalFunc.openEditProfile();
         console.log("1. before syncWithGoogle");
         globalFunc.syncWithGoogle();
-        console.log("2. after syncWithGoogle");
+        console.log("6. after syncWithGoogle");
+        console.log("7. Test case is not being finished, research and fix this issue!");
+        console.log(protractor.promise.controlFlow().getSchedule(false));
+        // done()
     });
-    console.log("7. end");
 });
