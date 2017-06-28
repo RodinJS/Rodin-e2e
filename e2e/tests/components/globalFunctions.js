@@ -8,6 +8,8 @@ const fs = require('fs');
 const utils = require('../utils/common');
 const objMap = require('../components/objectMap');
 
+const EC = protractor.ExpectedConditions;
+
 const globalFunc = function () {
 
     // TODO move these xpaths to objectMap.js
@@ -291,33 +293,62 @@ const globalFunc = function () {
         });
     };
 
-    this.open_project_settings = function (project_name) {
-        browser.actions().mouseMove(this.projectItem(project_name)).perform();
-        this.projectSettings(project_name).click().then(() => {
-            expect(objMap.titleUserName.isDisplayed()).toBe(true);
-            objMap.titleUserName.getText().then((text)=>{
-                expect(text).toEqual(`${project_name}`);
-            });
-            expect(browser.getCurrentUrl()).toContain(`${utils.CONSTANTS.spaceURL}project`);
-        })
+    this.get_project = function (project_name)
+    {
+    	return element.all(by.repeater('project in $ctrl.projects')).filter(function(elem, index) 
+		{
+  			return elem.getText().then(function(text) 
+  			{
+  				return text.includes(project_name);
+  			});
+		}).first();
     };
 
-    this.open_project_settings_byIndex = function (index)
+    this.open_project_settings = function (project_name) 
     {
 
-        // TODO this should be changed to more proper way
-        // Currently in main function browser maximize function is used to make all elemenets visible.
-        
-        // Get project by index -> Last one is first with index 2 in the list
-        this.projectSettingsByIndex = browser.findElement(by.xpath("//div[contains(@class,'row')]/div["+index+"]/div/div/div[2]"));
-        // hover on element to be visible
-        browser.actions().mouseMove(this.projectSettingsByIndex).perform();
-        
-        // this is required as sometimes object is not being found.
-        this.projectSettingsByIndex = browser.findElement(by.xpath("//div[contains(@class,'row')]/div["+index+"]/div/div/div[2]/ul[2]/li/a/i"));
-        
-        // click on project settings by its index
-        this.projectSettingsByIndex.click();
+		let tempElem = this.get_project(project_name);
+
+		browser.wait(EC.visibilityOf(tempElem), 15000).then (() =>
+		{
+			browser.actions().mouseMove(tempElem).perform();
+			tempElem.element(by.className('icon-settings')).click();
+		});
+
+    };
+
+    this.delete_project = function (project_name, confirmation = true) 
+    {
+
+		let tempElem =  this.get_project(project_name);
+
+		browser.wait(EC.visibilityOf(tempElem), 15000).then (() =>
+		{
+			browser.actions().mouseMove(tempElem).perform();
+			tempElem.element(by.className('icon-delete')).click();
+		});
+
+	    if (confirmation)
+	    {	
+	    	objMap.deleteModal.element(by.css('.text-highlight')).getText().then(function (text) 
+	    	{
+	    		//remove first and last characters which are opening and closing braces, i.e {}
+	    		text = text.slice(1,-1);
+
+		    	browser.wait(EC.visibilityOf(objMap.deleteBtn), 15000).then(()=>
+				{
+					objMap.deleteBtn.click();
+				});
+				expect(objMap.notificationsArray.get(0).getText()).toBe('Project '+ text + ' deleted');
+			});	
+			
+	    } else {
+	    	
+	     	browser.wait(EC.visibilityOf(objMap.cancelBtn), 15000).then(()=>
+			{
+			 	objMap.cancelBtn.click();
+			});
+	    }	
     };
 
     // Is not working: ERROR:  Failed: Error while waiting for Protractor to sync with the page: "Cannot read property '$$testability' of undefined"
