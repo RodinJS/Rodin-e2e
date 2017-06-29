@@ -38,4 +38,5 @@ describe('BugRelated.ts', () => {
         globalFunc.createProject('Video Gallery', project_name, project_url, project_description);
         globalFunc.searchProject(project_name);
     });
+
 });

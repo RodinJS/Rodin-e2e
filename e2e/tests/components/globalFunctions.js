@@ -351,6 +351,22 @@ const globalFunc = function () {
 	    }	
     };
 
+
+    this.uploadWrongSizeImage = function () {
+        objMap.projectThumbnail.click().then(()=>{
+            // TODO Couyld not focus on element , should be found another solution!!!
+            objMap.projectThumbnail.sendKeys("E:\\Rodin\\Rodin-e2e_local\\e2e\tests\\BugRelated.ts\\resources\\images\\6mb.jpg").then(() => {
+                ptor.actions().sendKeys(protractor.Key.ENTER).perform();
+                // objMap.projectThumbnail.sendKeys(Enter).then(()=>{
+                    objMap.wrongSizeImageNotification.getText().then((text)=>{
+                        expect(text).toEqual("File size must be less than 5mb");
+                    });
+                // });
+            });
+        });
+
+    };
+
     // Is not working: ERROR:  Failed: Error while waiting for Protractor to sync with the page: "Cannot read property '$$testability' of undefined"
     // Waiting for 5.1.2 version of protractor
     this.open_project_in_editor = function (user_name, project_name, project_url) {

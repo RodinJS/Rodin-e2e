@@ -11,7 +11,7 @@ exports.config = {
     standalone: true,
     specs: [
         //'./../tests/**/*.tc.js'
-        './../tests/**/Add_new_project_appears_in_editor_dropdown_list.tc.js'
+        './../tests/**/RO-522.tc.js'
         // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{

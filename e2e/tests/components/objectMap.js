@@ -49,10 +49,15 @@ const TestObj = function () {
     this.googleUnSync_button            = element(by.xpath("//button[@ng-click='$ctrl.confirmUnsync()']"));
     this.googleUnSync_button_cancel     = element(by.xpath("//a[@data-ng-click='$ctrl.modals.unsync = false']"));
 
+    // Settings Tab
+
+    this.projectThumbnail                = element(by.xpath("//*[@ng-click='$ctrl.onUploadAreaClick()'][1]"));
+
     //Notification texts
 	// Be Aware that I've chnaged this by binding.
     //this.notificationText               = element(by.xpath("//div[@ng-bind-html='message']"));    //  Check .text() value
 	this.notificationsArray             = element.all(by.binding('message'));
+	this.wrongSizeImageNotification     = element(by.xpath("//div[@class='message ng-binding']"));
 
     //Loaders
     this.loaderPresence                 = element(by.xpath("//div[@class='loaderContent']"));
