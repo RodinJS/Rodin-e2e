@@ -254,6 +254,51 @@ describe('Dashboard.ts', () => {
         });
 
     });
+    
+    it('Create_project_with_non_existing_gitHub_url.tc', () => 
+    { 
+        element(by.linkText('Dashboard')).click().then(() => {
+            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        });
+
+        // create a new project with spaces in url.
+        objMap.add_icon.click();  
+
+        let giturl = "https://vr.git";
+        // create a new project with only numbers in url     
+        globalFunc.fillProjectRequiredFields('Pull From GitHub', 'GitHubProj', 'GitHubUrl','This project is pulled from github', giturl, true);
+
+         // click on Save and Get Started
+        objMap.save_and_get_started_button.click()
+        expect(objMap.notificationsArray.count()).toBe(1);
+        expect(objMap.notificationsArray.get(0).getText()).toBe('GitHub project does not exist!');
+    });
+
+    it('Create_project_with_invalid_gitHub_url.tc', () => 
+    { 
+        element(by.linkText('Dashboard')).click().then(() => {
+            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        });
+          
+        // create a new project with spaces in url.
+        objMap.add_icon.click();  
+
+        let giturl = "https://google.com";
+        // create a new project with only numbers in url     
+        globalFunc.fillProjectRequiredFields('Pull From GitHub', 'GitHubProj', 'GitHubUrl','This project is pulled from github', giturl, true);
+
+         // click on Save and Get Started
+        objMap.save_and_get_started_button.click();
+        let error = objMap.gitHub_URL.element(by.xpath("../div[@class='validation error ng-binding ng-scope']"));
+
+        browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
+        {
+            error.getText().then(function(text)
+            {
+                expect(text).toBe("gitHub_URL");
+            });
+        });
+    });
 
     it('Cleanup.tc', () => 
     {
