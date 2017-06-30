@@ -312,10 +312,24 @@ const globalFunc = function () {
 		browser.wait(EC.visibilityOf(tempElem), 15000).then (() =>
 		{
 			browser.actions().mouseMove(tempElem).perform();
-			tempElem.element(by.className('icon-settings')).click();
-		});
+			return tempElem.element(by.className('icon-settings')).click();
+		})
+        .then(()=> browser.wait(EC.visibilityOf(objMap.projectNameInSettings), 15000))
+        .then(()=> browser.wait(EC.textToBePresentInElement(objMap.projectNameInSettings, project_name), 15000)); 
 
     };
+
+    this.editProject = function (project_name)
+    {
+        let tempElem =  this.get_project(project_name);
+
+        browser.wait(EC.visibilityOf(tempElem), 15000).then (() =>
+        {
+            browser.actions().mouseMove(tempElem).perform();
+            tempElem.element(by.className('item-title-link')).click();
+        });
+
+    }
 
     this.delete_project = function (project_name, confirmation = true) 
     {
