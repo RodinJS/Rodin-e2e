@@ -239,7 +239,7 @@ const globalFunc = function () {
         // if gitHub template is used also specify GitHub URL
         if(template_name == 'Pull From GitHub')
         {
-            objMap.gitHub_URL = gitHub_url;
+            objMap.gitHub_URL.sendKeys(gitHub_url);
         }
 
     };
