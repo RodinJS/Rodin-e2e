@@ -27,7 +27,28 @@ describe('Dashboard.ts', () => {
 
     });
 
+    it('Create_project_with_non_unique_URL.tc', () => {
+
+        // click on '+' button
+        objMap.add_icon.click(); 
+
+        // create a new project with non unique URL 
+        globalFunc.fillProjectRequiredFields('Basic', 'CbA321', '123url','other description', "", true);
+
+        // click on Save and Get Started
+        objMap.save_and_get_started_button.click();
+
+        expect(objMap.notificationsArray.count()).toBe(1);
+        expect(objMap.notificationsArray.get(0).getText()).toBe('Project url already exists');
+
+    });
+
     it('Create_project_with_only_numbers_in_url.tc', () => {
+
+        // go to dashboard
+        element(by.linkText('Dashboard')).click().then(() => {
+            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        });
        
        // create a new project with only numbers in url  	
         globalFunc.createProject('Blank', 'NumbersInURL', '111','This project has only numbers in url', "", true);
@@ -295,7 +316,7 @@ describe('Dashboard.ts', () => {
         {
             error.getText().then(function(text)
             {
-                expect(text).toBe("gitHub_URL");
+                expect(text).toBe("URL is invalid");
             });
         });
     });
