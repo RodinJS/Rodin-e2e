@@ -192,9 +192,74 @@ describe('Dashboard.ts', () => {
 
     });
 
-    it('Cleanup.tc', () => {
+    it('Create_project_with_empty_description.tc', () => 
+    {
+        element(by.linkText('Dashboard')).click().then(() => {
+            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        });
+       
+       // create a new project with spaces in url.
+        objMap.add_icon.click();      
+        globalFunc.fillProjectRequiredFields('Blank', 'TestInvalid', 'TestURL',"", "", true);
+
+       
+       // click on Save and Get Started
+        objMap.save_and_get_started_button.click();
+
+       // checking that project is not created with error.
+         let error = objMap.project_description.element(by.xpath("../div[@class='validation error ng-binding ng-scope']"));
+
+        browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
+        {
+            error.getText().then(function(text)
+           {
+               expect(text).toBe("Description is required");
+           });
+
+       });
+
+    });
+
+    it('Create_project_with_spaces_in_description.tc', () => {
+
+        element(by.linkText('Dashboard')).click().then(() => {
+            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        });
+       
+       // create a new project with spaces in url.
+        objMap.add_icon.click();      
+        globalFunc.fillProjectRequiredFields('Blank', 'InvalidDescription', 'DecrURL'," ", "", true);
+
+       
+       // click on Save and Get Started
+        objMap.save_and_get_started_button.click();
+
+        let error = objMap.project_description.element(by.xpath("../div[@class='validation error ng-binding ng-scope']"));
+
+        browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
+        {
+            error.getText().then(function(text)
+            {
+                expect(text).toBe("Description is required");
+            });
+        });
+
+       // checking that project is not created with error.
+       browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
+       {
+            error.getText().then(function(text)
+            {
+               expect(text).toBe("Description is required");
+            });
+        });
+
+    });
+
+    it('Cleanup.tc', () => 
+    {
     	//go to Dashboard
-    	element(by.linkText('Dashboard')).click().then(() => {
+    	element(by.linkText('Dashboard')).click().then(() => 
+        {
   			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
   		});
 
