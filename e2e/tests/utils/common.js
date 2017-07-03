@@ -36,6 +36,10 @@ const TESTUSERS = [
     {   // User for Change password (Use this user, to be independent form other test cases )
         username:'mher13',
         password:'a1234567',
+    },
+    {   // User who is not synced with gitHub 
+        username:'mmmm',
+        password:'Qw123456',
     }
 ];
 
