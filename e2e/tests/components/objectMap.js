@@ -53,6 +53,8 @@ const TestObj = function () {
 
     this.projectThumbnail                = element(by.xpath("//*[@ng-click='$ctrl.onUploadAreaClick()'][1]"));
     this.projectNameInSettings           = element(by.className('user-name ng-binding'));
+    this.projectNameInputInSettings      = element(by.model('$ctrl.project.displayName'));
+    this.projectDescInputInSettings      = element(by.model('$ctrl.project.description'));
 
     //Notification texts
 	// Be Aware that I've chnaged this by binding.
