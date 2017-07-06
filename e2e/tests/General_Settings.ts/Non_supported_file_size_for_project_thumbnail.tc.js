@@ -1,0 +1,55 @@
+/**
+ * Created by melkabelka on 7/4/17.
+ */
+
+const common = require('../utils/common');
+const globalFunc = require('../components/globalFunctions');
+const objMap = require('../components/objectMap');
+const cmd = require('node-cmd');
+
+const EC = protractor.ExpectedConditions;
+
+describe('General_Settings.ts', () => {
+
+    beforeEach(() => {
+        common.goToUrl('login');
+    });
+
+    it('Login_with_existing_cridentals.tc', () => {
+        globalFunc.isDisplayed_Login_Fields();
+        globalFunc.processLogin(common.TESTUSERS[6].username, common.TESTUSERS[6].password, true);
+    });
+	
+    it('Create_project_with_unique_URL.tc', () => {
+
+        // create a new project with unique URL	
+    	globalFunc.createProject('Basic', 'AbC123', '123url','project description', "", false);  
+
+    });
+
+    it('Supported_file_as_project_thumbnail.tc', () => {
+
+        // open project with name
+        globalFunc.open_project_settings("AbC123");
+
+        let tempElem = element(by.className('drag-area first'));
+        browser.wait(EC.visibilityOf(tempElem), 15000, "Wait for thumbnail field");
+        browser.actions().mouseMove(tempElem).perform();
+        tempElem.click().then(()=>{
+            let par= __dirname + '\\resources';
+            let tempPath = par+ '\\chooseFile.au3 '+ par+'\\5MBFile.jpg';
+            cmd.run(tempPath);    
+        }).then(()=> {
+            browser.wait(EC.presenceOf(objMap.notificationsArray), 5000);
+            expect(objMap.notificationsArray.count()).toBe(1);
+            expect(objMap.notificationsArray.get(0).getText()).toBe('File size must be less than 5mb');
+        });
+    });
+    
+    it('Cleanup.tc', () => 
+    {
+		globalFunc.delete_project("AbC123",true);
+        
+    });
+
+});
