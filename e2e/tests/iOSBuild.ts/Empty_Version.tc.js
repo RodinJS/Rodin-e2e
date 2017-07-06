@@ -49,7 +49,7 @@ describe('iOSBuild.ts', () => {
 
         let error = iOSCommon.iOSVersion.element(by.xpath("../div[@class='validation error ng-scope']"));
 
-        // checking that error appeared that application name is not specified
+        // checking that error appeared that application version is not specified
         browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
         {
             error.getText().then(function(text)
