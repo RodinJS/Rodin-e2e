@@ -6,15 +6,20 @@
 
 const iOSCommon = function () {
 
+    this.iOSAppName    = element(by.model('$ctrl.project.ios.name'));
+    this.iOSVersion    = element(by.model('$ctrl.project.ios.version'));
+    this.iOSBundle     = element(by.model('$ctrl.project.ios.bundle'));
+    this.developerId   = element(by.model('$ctrl.project.ios.developerId'));
+
     this.iOSFieldsFill = function  (dispName, version, boundle, devID, prov_profile_path, cert_path, icon_path) {
         // set application name
-        element(by.model('$ctrl.project.ios.name')).sendKeys(dispName);
+        this.iOSAppName.sendKeys(dispName);
         // set application version
-        element(by.model('$ctrl.project.ios.version')).sendKeys(version);
+        this.iOSVersion.sendKeys(version);
         // set boundle
-        element(by.model('$ctrl.project.ios.bundle')).sendKeys(boundle);
+        this.iOSBundle.sendKeys(boundle);
         // set developer ID
-        element(by.model('$ctrl.project.ios.developerId')).sendKeys(devID);
+        this.developerId.sendKeys(devID);
         // upload provisiioning profile
         browser.findElement(by.id("profile-file")).sendKeys(prov_profile_path);
         // upload certificate
