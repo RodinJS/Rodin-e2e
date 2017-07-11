@@ -12,13 +12,13 @@ const AndroidCommon = function () {
     this.Name              = element(by.model('$ctrl.project.android.keyStore.name'));
     this.Alias             = element(by.model('$ctrl.project.android.keyStore.alias'));
 
-    this.AndroidFieldsFill = function  (dispName, version, package, name, alias, icon_path) {
+    this.AndroidFieldsFill = function  (dispName, version, pack, name, alias, icon_path) {
         // set application name
         this.AndroidAppName.sendKeys(dispName);
         // set application version
         this.AndroidVersion.sendKeys(version);
         // set package
-        this.AndroidPackage.sendKeys(package);
+        this.AndroidPackage.sendKeys(pack);
         // set developer name
         this.Name.sendKeys(name);
         // set alias
