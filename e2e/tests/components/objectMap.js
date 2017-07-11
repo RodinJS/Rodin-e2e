@@ -19,6 +19,7 @@ const TestObj = function () {
     // Common locators for all builds
     this.publishDialog                  = element(by.css(".publish-modal"));
     this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
+    this.androidTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(3).column('navigation.title'));
     this.publishTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(7).column('navigation.title'));
     
     // iOS build section
