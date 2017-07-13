@@ -20,8 +20,33 @@ const TestObj = function () {
     this.publishDialog                  = element(by.css(".publish-modal"));
     this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
     this.androidTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(3).column('navigation.title'));
+    this.webTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(6).column('navigation.title'));
     this.publishTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(7).column('navigation.title'));
-    
+
+
+    // Web tab locators
+    this.addCustomDomain                = element(by.xpath("//input[@name='enabled']/parent::span"));
+    this.webWarningWindowDescription    = element(by.xpath("//p[@class='description word-wrap']"));
+    this.webWarningWindowHeader         = element(by.xpath("//div[@class='modal-header']/p"));
+    this.publishProjectButton           = element(by.xpath("//button[@ng-click='$ctrl.gotToPublish()']"));
+    this.cancelButton                   = element(by.xpath("//a[text()='Cancel']"));
+    this.yourProjectCurrentURL          = element(by.xpath("//a[@class='text-yellow ng-binding']"));
+    this.pleaseMakeARecordString        = element(by.xpath("//p[@class='form-description ng-binding']"));
+    this.webInputUrl                    = element(by.xpath("//input[@name='url']"));
+    this.webSubmitButton                = element(by.xpath("//button[@type='submit']"));
+    this.webDeleteDomainButton          = element(by.xpath("//a[@ng-click='$ctrl.deleteDomain($event)']"));
+    this.webDeleteDomainConfirmButton   = element(by.xpath("//button[@ng-if='$ctrl.delete']"));
+    this.webDeleteDomainConfirmDesc     = element(by.xpath("//span[@class='text-highlight']"));
+    this.addDomainNameNotification      = element(by.xpath("//div[@ng-bind-html='message']"));
+
+
+    // Publish tab locators
+    this.publishTabSectionTitle         = element(by.xpath("//h3[@class='section-title']"));
+    this.publishTabDescription          = element(by.xpath("//p[@class='description']/parent::div[@class='publish-date']"));
+    this.publishButtonInPublishTab      = element(by.xpath("//button[@ng-click='$ctrl.publish()']"));
+    this.lastPublishedAtString          = element(by.xpath("//p[@class='description ng-binding']"));
+    this.yourProjectIsPublishedOn       = element(by.xpath("//a[@class='text-yellow ng-binding']"));
+
     // iOS build section
     this.certificatePswdDialog          = element(by.css(".modal-content"));
     this.downloadBuild                  = element(by.css('.download'));
