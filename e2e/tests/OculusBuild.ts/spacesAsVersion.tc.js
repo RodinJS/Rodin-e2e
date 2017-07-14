@@ -65,6 +65,6 @@ describe('OculusBuild.ts', () => {
 
         globalFunc.delete_project("oculusProj",true);
 
-    });
+    }); 
 
 });
