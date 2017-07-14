@@ -21,8 +21,8 @@ const TestObj = function () {
     this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
     this.androidTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(3).column('navigation.title'));
     this.webTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(6).column('navigation.title'));
+    this.oculusTab                      = element(by.repeater('(key, navigation) in vm.navigation').row(4).column('navigation.title'));
     this.publishTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(7).column('navigation.title'));
-
 
     // Web tab locators
     this.addCustomDomain                = element(by.xpath("//input[@name='enabled']/parent::span"));
