@@ -76,6 +76,8 @@ describe('iOSBuild.ts', () => {
         // fill all iOS fields
         iOSCommon.iOSFieldsFill("iOSAppUpdate", "1.1.1", "com.testUpdate.io", "TestUpdate", mobile_prov, cert, icon);
 
+        let error = iOSCommon.iOSVersion.element(by.xpath("../div[@class='validation error ng-scope']"));
+
         // checking that error appeared that application version is lower than current version
         browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
         {
