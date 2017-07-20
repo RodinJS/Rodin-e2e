@@ -447,6 +447,8 @@ const globalFunc = function () {
             });
     };
 
+
+
     // this function is for taking browser screenshot
     this.writeScreenShot = function (data, filename) {
         let stream = fs.createWriteStream(filename);
