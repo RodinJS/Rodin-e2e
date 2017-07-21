@@ -20,8 +20,9 @@ const TestObj = function () {
     this.publishDialog                  = element(by.css(".publish-modal"));
     this.iosTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(2).column('navigation.title'));
     this.androidTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(3).column('navigation.title'));
-    this.webTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(6).column('navigation.title'));
     this.oculusTab                      = element(by.repeater('(key, navigation) in vm.navigation').row(4).column('navigation.title'));
+    this.viveTab                        = element(by.repeater('(key, navigation) in vm.navigation').row(5).column('navigation.title'));
+    this.webTab                         = element(by.repeater('(key, navigation) in vm.navigation').row(6).column('navigation.title'));
     this.publishTab                     = element(by.repeater('(key, navigation) in vm.navigation').row(7).column('navigation.title'));
 
     // Web tab locators
@@ -147,36 +148,47 @@ const TestObj = function () {
 
     this.project_tempalte               = function (template_name) 
     {
+        let rowNumber = -1;
         switch(template_name) 
         {
             case 'Blank':
-                return element(by.repeater('project in list').row(0).column('project.name')); 
+                rowNumber = 0;
+                break;
 
             case 'Basic':
-                return element(by.repeater('project in list').row(1).column('project.name')); 
+                rowNumber = 1;
+                break;
                 
             case "Drag'n'Drop":
-                return element(by.repeater('project in list').row(2).column('project.name')); 
-            
+                rowNumber = 2;
+                break;
+                
             case 'Presentation Hall':
-                return element(by.repeater('project in list').row(3).column('project.name')); 
+                rowNumber = 3;
+                break;
                 
             case 'Interior':
-                return element(by.repeater('project in list').row(4).column('project.name')); 
+                rowNumber = 4;
+                break;
                 
             case '360 Video Player':
-                return element(by.repeater('project in list').row(5).column('project.name')); 
+                rowNumber = 5;
+                break;
                  
             case 'Video Gallery':
-                return element(by.repeater('project in list').row(6).column('project.name')); 
+                rowNumber = 6;
+                break;
                  
             case 'Pull From GitHub':
-                return element(by.repeater('project in list').row(7).column('project.name')); 
+                rowNumber = 7;
+                break;
                                                                                                 
             default:
                 console.log('!!!PROJECT TEMPLATE NAMES ARE CHANGED!!!');
-                return element(by.repeater('project in list').row(0).column('project.name'));
-        }      
+                rowNumber = 0;
+                break;
+        }
+        return element(by.repeater('project in list').row(rowNumber).column('project.name'))   
     };
 
     //this.Project_Name_Field 			= element(by.xpath("//input[@data-ng-model='$ctrl.project.displayName']"));
