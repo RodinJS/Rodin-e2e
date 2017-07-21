@@ -56,7 +56,7 @@ describe('ViveBuild.ts', () => {
         objMap.downloadBuild.click(); 
         
         // wait for download build to appear
-        browser.sleep(45000);
+        browser.sleep(15000);
         
         // go to publish section
         objMap.publishTab.click();
