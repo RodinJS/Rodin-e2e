@@ -35,13 +35,13 @@ describe('BugRelated.ts', () => {
     project_template = 'Video Gallery';
 
     //TODO Remove after finish
-    project_name = "name4539074";
-    project_url = "url4539074";
+    // project_name = "name4539074";
+    // project_url = "url4539074";
 
     //TODO uncomment after finish
-    // it('Create_project_with_unique_URL.tc', () => {
-    //     globalFunc.createProject(project_template, project_name, project_url, project_description, "", true);
-    // });
+    it('Create_project_with_unique_URL.tc', () => {
+        globalFunc.createProject(project_template, project_name, project_url, project_description, "", true);
+    });
 
     // TODO Should be used to make Web tab related all test cases
     // TODO All strings should be added in golden constants
@@ -172,11 +172,11 @@ describe('BugRelated.ts', () => {
 
     });
 
-    /*
+
     it('Cleanup.tc', () => {
         // globalFunc.delete_project(project_name,false);
         console.log("globalFunc.delete_project("+ project_name + ",true);")
     });
-    */
+
 
 });
