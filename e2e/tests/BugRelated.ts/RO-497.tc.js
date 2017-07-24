@@ -2,6 +2,22 @@
  * Created by mhers on 4/13/17.
  */
 
+/**
+ Run Part:
+ 1. Create Project (Github is synced)
+ 2. Go to settings, Web
+ 3. Click add custom domian
+ 4. Publish project
+ 5. Again click add custom domain
+ 6. Add custom domain
+ 7. Open custom domain
+ Validate Part:
+ 1. Check published VR project opened using custom domain
+ 2. Again open project settings, web and delete custom domain
+ 3. Delete project
+ 4. Check there is no errors in console
+**/
+
 const common = require('../utils/common');
 const globalFunc = require('../components/globalFunctions');
 const objMap = require('../components/objectMap');
