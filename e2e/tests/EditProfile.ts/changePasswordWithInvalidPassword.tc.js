@@ -1,5 +1,5 @@
 /**
- * Created by melkabelka on 7/6/17.
+ * Created by melkabelka on 25/7/17.
  */
 
 const common = require('../utils/common');
@@ -22,18 +22,24 @@ describe('AndroidBuild.ts', () => {
 
     it('changePasswordWithInvalidPassword.tc', () => {
 
+        //go to edit profile section
         globalFunc.openEditProfile();
-        this.passwordTab = element(by.linkText('Password'));
-        this.passwordTab.click();
-        browser.sleep(3000);
-        this.newPassword = element(by.model('$ctrl.newPassword.password'));
-        this.newPassword.sendKeys('Test');
-        this.confirmPassword =  element(by.model('$ctrl.newPassword.confirm'));
-        this.confirmPassword.sendKeys('Test');
-        this.confirmPass = element(by.buttonText('Update Password'));
-        this.confirmPass.click();
+       
+       	// go to passwors tab
+        objMap.passwordTab.click();
+
+        //type new password in new password field
+        objMap.newPassword.sendKeys('Test');
+
+        // confirm you set password
+        objMap.confirmPassword.sendKeys('Test');
+
+        // this.confirmPass = element(by.buttonText('Update Password'));
+        objMap.confirmPass.click();
+
+        // TODO checks with incorrect password login
+        // check that password is not updated. No notification pops up.
         expect(objMap.notificationsArray.count()).toBe(0);
-        //expect(objMap.notificationsArray.get(0).getText()).toBe('Password successfully updated');
 
     });
 
