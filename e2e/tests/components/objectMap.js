@@ -61,6 +61,12 @@ const TestObj = function () {
     this.accountSettingsTitle           = element(by.xpath("//h1[@class='title']"));
     this.facebookSync                   = element(by.xpath("//button[@ng-click='$ctrl.fbSync()']"));
     this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
+    this.passwordTab                    = element(by.linkText('Password'));
+    this.newPassword                    = element(by.model('$ctrl.newPassword.password'));
+    this.confirmPassword                = element(by.model('$ctrl.newPassword.confirm'));
+    this.confirmPass                    = element(by.buttonText('Update Password'));
+
+
 
     this.passwordTab                    = element(by.xpath("//a[text()='Password']"));
     this.passwordString                 = element(by.xpath("//h3[text()='Change Password']"));
