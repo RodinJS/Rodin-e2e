@@ -226,6 +226,7 @@ const TestObj = function () {
     // Editor Page
     this.editorLoader                   = element(by.xpath("//div[@class='loaderContent']"));
     this.editorProjectsDropdown         = element(by.xpath("//a[@class='dropdown-toggle btn-folder-name ng-binding']"));
+    this.editorTitle                    = element(by.xpath("//title[contains(text(),'Editor')]"));
 
     this.editorProjectsDropdownUrl      = function (project_url) {
         return element(by.xpath(`//a[text()='${project_url}']`));
