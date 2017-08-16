@@ -4,6 +4,9 @@
 
 const common = require('../utils/common');
 const globalFunc = require('../components/globalFunctions');
+const objMap = require('../components/objectMap');
+
+const EC = protractor.ExpectedConditions;
 
 describe('Dashboard.ts', () => {
 
@@ -25,8 +28,14 @@ describe('Dashboard.ts', () => {
     
     it('Cleanup.tc', () => 
     {
-		  globalFunc.delete_project("AbC123",true);
-        
+		globalFunc.delete_project("AbC123",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
+            
     });
 
 });

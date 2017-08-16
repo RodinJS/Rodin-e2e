@@ -6,6 +6,7 @@
 
 const CONSTANTS = {
     spaceURL:'https://rodin.space/',
+    //spaceURL:'http://rodinapp.com/',
     designURL:'https://rodin.design/',
     ioURL:'https://rodin.io/',
     googleURL: 'google.com/',
@@ -26,7 +27,7 @@ const TESTUSERS = [
     },
     {
         username:'mariam',
-        password:'Qw123456',
+        password:'!(Mariamik1)?',
     },
     {   // User with created 5 projects (Project limit is 5)
         username:'mher6',

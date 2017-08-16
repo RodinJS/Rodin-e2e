@@ -68,7 +68,13 @@ describe('General_Settings.ts', () => {
     
     it('Cleanup.tc', () => 
     {
-		  globalFunc.delete_project("AbC123",true);
+		globalFunc.delete_project("AbC123",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
         
     });
 

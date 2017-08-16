@@ -50,4 +50,14 @@ describe('General_Settings.ts', () => {
         globalFunc.openPublicProject(user, project_url);
     });
 
+    it('Cleanup.tc', () => 
+    {
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
+        
+    });
+
 });

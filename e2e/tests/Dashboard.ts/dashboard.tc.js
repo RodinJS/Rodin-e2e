@@ -44,11 +44,6 @@ describe('Dashboard.ts', () => {
     });
 
     it('Create_project_with_only_numbers_in_url.tc', () => {
-
-        // go to dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
        
        // create a new project with only numbers in url  	
         globalFunc.createProject('Blank', 'NumbersInURL', '111','This project has only numbers in url', "", true);
@@ -114,10 +109,6 @@ describe('Dashboard.ts', () => {
     });
 
     it('Create_project_with_spaces_in_url.tc', () => {
-
-    	element(by.linkText('Dashboard')).click().then(() => {
-  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-  		});
        
        // create a new project with spaces in url.
         objMap.add_icon.click();      
@@ -215,9 +206,6 @@ describe('Dashboard.ts', () => {
 
     it('Create_project_with_empty_description.tc', () => 
     {
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
        
        // create a new project with spaces in url.
         objMap.add_icon.click();      
@@ -242,10 +230,6 @@ describe('Dashboard.ts', () => {
     });
 
     it('Create_project_with_spaces_in_description.tc', () => {
-
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
        
        // create a new project with spaces in url.
         objMap.add_icon.click();      
@@ -278,10 +262,6 @@ describe('Dashboard.ts', () => {
     
     it('Create_project_with_non_existing_gitHub_url.tc', () => 
     { 
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
-
         // create a new project with spaces in url.
         objMap.add_icon.click();  
 
@@ -297,9 +277,9 @@ describe('Dashboard.ts', () => {
 
     it('Create_project_with_invalid_gitHub_url.tc', () => 
     { 
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
+        // element(by.linkText('Dashboard')).click().then(() => {
+        //     expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
+        // });
           
         // create a new project with spaces in url.
         objMap.add_icon.click();  
@@ -323,11 +303,7 @@ describe('Dashboard.ts', () => {
 
 
     it('Create_project_with_empty_gitHub_url.tc', () => 
-    { 
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
-          
+    {     
         // create a new project with spaces in url.
         objMap.add_icon.click();  
 
@@ -351,17 +327,19 @@ describe('Dashboard.ts', () => {
 
     it('Cleanup.tc', () => 
     {
-    	//go to Dashboard
-    	element(by.linkText('Dashboard')).click().then(() => 
-        {
-  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-  		});
 
-		globalFunc.delete_project("AbC123",true);
-        globalFunc.delete_project("NumbersInURL",true);
-        globalFunc.delete_project("SymbolsInURL",true);
-        globalFunc.delete_project("Project is with max symbols in all input fields, i.e 64, 16, 128",true);
+      // delete created projects
+	    globalFunc.delete_project("AbC123",true);
+      globalFunc.delete_project("NumbersInURL",true);
+      globalFunc.delete_project("SymbolsInURL",true);
+      globalFunc.delete_project("Project is with max symbols in all input fields, i.e 64, 16, 128",true);
 
-    });
+      // sign out
+      let userMenu = browser.findElement(by.id('accountLabel'));
+      userMenu.click();
+      let signOut = element(by.className('signout-link'));
+      signOut.click();
+
+  });
 
 });

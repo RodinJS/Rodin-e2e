@@ -35,4 +35,15 @@ describe('Dashboard.ts', () => {
         // expect(objMap.notificationsArray.get(0).getText()).toBe('GitHub project does not exist!');
     });
 
+    it('Cleanup.tc', () => 
+    {
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
+            
+    });
+
+
 });
