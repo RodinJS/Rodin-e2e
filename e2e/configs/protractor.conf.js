@@ -11,7 +11,11 @@ exports.config = {
     standalone: true,
     specs: [
         //'./../tests/**/*.tc.js'
+<<<<<<< Updated upstream
         './../tests/**/Add_new**.tc.js'
+=======
+        './../tests/AndroidBuild.ts/changePasswordWithInvalidPassword.tc.js'
+>>>>>>> Stashed changes
         // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{
