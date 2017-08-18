@@ -62,7 +62,7 @@ describe('ViveBuild.ts', () => {
         objMap.publishTab.click();
 
         // click on publish: URL SHOULD BE CHANGED TO TEST ACCOUNT
-        this.publishURL = element(by.linkText("https://rodin.space/"+common.TESTUSERS[3].username+"/viveurl"));
+        this.publishURL = element(by.linkText(common.CONSTANTS.spaceURL+common.TESTUSERS[3].username+"/viveurl"));
 
         // change focus on new opened tab
         this.publishURL.click();
@@ -88,12 +88,14 @@ describe('ViveBuild.ts', () => {
 
 
     it('Cleanup.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
 
         globalFunc.delete_project("viveProj",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
 
     });
 
