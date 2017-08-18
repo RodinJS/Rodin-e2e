@@ -55,10 +55,6 @@ describe('OculusBuild.ts', () => {
     });
 
     it('versionLowerThanBuiltVersion.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
 
         // go to created oculusProj project's settings
         globalFunc.open_project_settings("oculusProj");
@@ -87,12 +83,14 @@ describe('OculusBuild.ts', () => {
     });
 
     it('Cleanup.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
-
+        
         globalFunc.delete_project("oculusProj",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
 
     });
 

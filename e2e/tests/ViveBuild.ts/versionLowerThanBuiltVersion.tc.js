@@ -55,10 +55,6 @@ describe('ViveBuild.ts', () => {
     });
 
     it('versionLowerThanBuiltVersion.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
 
         // go to created viveProj project's settings
         globalFunc.open_project_settings("viveProj");
@@ -87,12 +83,14 @@ describe('ViveBuild.ts', () => {
     });
 
     it('Cleanup.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-            expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        });
 
         globalFunc.delete_project("viveProj",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
 
     });
 
