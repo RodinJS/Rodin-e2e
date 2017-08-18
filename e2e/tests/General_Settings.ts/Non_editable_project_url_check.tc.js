@@ -43,7 +43,6 @@ describe('General_Settings.ts', () => {
         let signOut = element(by.className('signout-link'));
         signOut.click();
         
-        
     });
 
 });
