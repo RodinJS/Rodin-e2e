@@ -51,6 +51,15 @@ const globalFunc = function () {
 		expect(objMap.save_and_get_started_button.isDisplayed()).toBe(true);
     };
 
+    this.isDisplayed_SignUp_Fields = function () {
+        expect(objMap.newUserNameField.isDisplayed()).toBe(true);
+        expect(objMap.newEmailField.isDisplayed()).toBe(true);
+        expect(objMap.NewPasswordField.isDisplayed()).toBe(true);
+        expect(objMap.NewPasswordConfirmField.isDisplayed()).toBe(true);
+        expect(objMap.AgreeCheckboxField.isDisplayed()).toBe(true);
+        expect(objMap.signUpButton.isDisplayed()).toBe(true);
+    };
+
     this.processLogin = function (username, password, successLogin) {
         objMap.userNameField.sendKeys(username);
         objMap.passwordField.sendKeys(password);
@@ -67,6 +76,28 @@ const globalFunc = function () {
                 objMap.wrongCredentials.getText().then((text)=>{
                     expect(text).toEqual('Wrong username or password');
                 });
+            }
+        })
+    };
+
+    this.processSignUp = function (username, email, password, successSignUp) {
+        objMap.newUserNameField.sendKeys(username);
+        objMap.newEmailField.sendKeys(email);
+        objMap.NewPasswordField.sendKeys(password);
+        objMap.NewPasswordConfirmField.sendKeys(password);
+        objMap.AgreeCheckboxField.click();
+        objMap.signUpButton.click().then(() => {
+            if(successSignUp){
+                expect(objMap.dashboardContainer.isDisplayed()).toBe(true);
+                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}dashboard`);
+                objMap.dashboardAccountWrapper.evaluate('$ctrl.user').then((value) => {
+                    expect(value.username).toEqual(username);
+                });
+            }
+            else{
+                // TODO: Here write code for negative test cases!
+                // Add checking following notification
+                // Username or Email already exists
             }
         })
     };

@@ -2,7 +2,7 @@
  * Created by xgharibyan on 3/23/17.
  */
 
-
+const num = Math.random()*10000000+1;
 
 const CONSTANTS = {
     spaceURL:'https://rodin.space/',
@@ -71,10 +71,15 @@ const USERS = {
     }
 };
 
+// SignUp Users
+const NEWUSER = {
+    randomUser: {
+        Name: 'user' + Math.floor(num),
+        Email: 'user' + Math.floor(num) + '@gmail.com',
+        Password: 'a1234567'
+    }
+};
 
-
-
-const num = Math.random()*10000000+1;
 // Old syntax
 const TESTPROJECTS = [
     {
@@ -165,5 +170,6 @@ module.exports = {
     TEMPLATENAMES:TEMPLATENAMES,
     TEMPLATES:TEMPLATES,
     SYNCACCOUNTS:SYNCACCOUNTS,
-    golden:golden
+    golden:golden,
+    NEWUSER:NEWUSER
 };

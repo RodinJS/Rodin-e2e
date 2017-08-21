@@ -12,6 +12,30 @@ const TestObj = function () {
     this.wrongCredentials 				= this.LoginContainer.element(by.css('.text-wrong'));
     this.wrongCredentials2 				= element(by.css('.ng-binding'));
 
+    // SignUp Locators
+    this.newUserNameField  				= element(by.xpath("//input[@name='username']"));
+    this.newEmailField  			    = element(by.xpath("//input[@name='email']"));
+    this.NewPasswordField  				= element(by.xpath("//input[@name='password']"));
+    this.NewPasswordConfirmField  		= element(by.xpath("//input[@name='passwordConfirm']"));
+    this.AgreeCheckboxField    			= element(by.xpath("//input[@name='agreement']"));
+    this.signUpButton    			    = element(by.xpath("//button[@type='submit']"));
+
+    // Admin page Locators
+    this.adminPageUsernameField  		= element(by.xpath("//input[@name='username']"));
+    this.adminPagePasswordField  		= element(by.xpath("//input[@name='password']"));
+    this.adminPageFountUsername = function(username){
+        return element(by.xpath(`//tbody/tr/td[text()='${username}']`));
+    };
+    this.adminPageRemoveUser = function(username){
+        return element(by.xpath(`//tbody/tr/td[text()='${username}']/parent::tr/td/div/a/i[contains(@style,'red')]/parent::a`));
+    };
+    this.adminPageConfirmDeleteButton   = element(by.xpath("//button[contains(text(),'Delete')]"));
+
+    // Admin page Users Locators
+    this.adminPageUsersField  		    = element(by.xpath("//a[contains(text(),'Users')]"));
+    this.adminPageSearchByUsername  	= element(by.xpath("//input[@name='searchString']"));
+    this.adminPageSignInButton    		= element(by.xpath("//button[@type='submit']"));
+
 	// Dashboard Locators
     this.dashboardContainer         	= element(by.css('.page-dashboard'));
     this.dashboardAccountWrapper    	= this.dashboardContainer.element(by.css('.hidden-xs'));
