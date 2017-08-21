@@ -73,9 +73,8 @@ const globalFunc = function () {
             }
             else{
                 expect(objMap.wrongCredentials.isDisplayed()).toBe(true);
-                objMap.wrongCredentials.getText().then((text)=>{
-                    expect(text).toEqual('Wrong username or password');
-                });
+                expect(objMap.notificationsArray.count()).toBe(1);
+                expect(objMap.notificationsArray.get(0).getText()).toBe('Wrong username or password');
             }
         })
     };
