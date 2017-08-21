@@ -410,6 +410,16 @@ const globalFunc = function () {
             // })
     };
 
+    this.check_deleted_project_is_not_in_editor_dropdown_list = function (project_url) {
+
+        // expect(this.editorProjectsDropdownUrl(project_url).getText()).toBe(false);
+        this.editorProjectsDropdownUrl(project_url).getText().then((text)=>{
+            expect(text).toEqual("");
+        });
+    };
+
+
+
     this.publicProject = function (user, project_url) {
         objMap.publicProjectCheckbox.click().then(() => {
             expect(objMap.currentVersionLink.isDisplayed()).toBe(true);

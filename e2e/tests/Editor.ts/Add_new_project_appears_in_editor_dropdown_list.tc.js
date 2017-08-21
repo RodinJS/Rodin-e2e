@@ -29,16 +29,9 @@ describe('Editor.ts', () => {
 
     user_name = common.USERS.MherS.username;
     url = common.CONSTANTS.spaceURL;
-
-    // TODO uncomment after finish creating test case
     project_name = common.PROJECTS.Name;
     project_url = common.PROJECTS.URL;
     project_description = common.PROJECTS.Description;
-
-    // TODO Remove after finish creating test case
-    // project_name = "name1559390";
-    // project_url = "url1559390";
-
     project_template = 'Basic';
 
     it('Create_project_with_unique_URL.tc', () => {
