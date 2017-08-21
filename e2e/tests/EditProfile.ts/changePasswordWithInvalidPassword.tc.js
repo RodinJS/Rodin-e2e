@@ -7,7 +7,7 @@ const globalFunc = require('../components/globalFunctions');
 const objMap = require('../components/objectMap');
 const EC = protractor.ExpectedConditions;
 
-describe('AndroidBuild.ts', () => {
+describe('EditProfile.ts', () => {
 
     beforeEach(() => {
         common.goToUrl('login');
