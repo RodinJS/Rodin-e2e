@@ -41,6 +41,10 @@ const TESTUSERS = [
     {   // User who is not synced with gitHub 
         username:'mmmm',
         password:'Qw123456',
+    },
+    {
+        username:'test',
+        password:'Qw123456',
     }
 ];
 
