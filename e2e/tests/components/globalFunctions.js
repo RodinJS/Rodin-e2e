@@ -73,6 +73,7 @@ const globalFunc = function () {
             }
             else{
                 expect(objMap.wrongCredentials.isDisplayed()).toBe(true);
+                browser.sleep(2000);
                 expect(objMap.notificationsArray.count()).toBe(1);
                 expect(objMap.notificationsArray.get(0).getText()).toBe('Wrong username or password');
             }
@@ -94,11 +95,78 @@ const globalFunc = function () {
                 });
             }
             else{
-                // TODO: Here write code for negative test cases!
-                // Add checking following notification
-                // Username or Email already exists
+                expect(objMap.notificationsArray.count()).toBe(1);
+                expect(objMap.notificationsArray.get(0).getText()).toBe('Username or Email already exists');
             }
         })
+    };
+
+
+    this.processSignUpWIthEmptyField = function (username, email, password, emptyfield) {
+        objMap.newUserNameField.sendKeys(username);
+        objMap.newEmailField.sendKeys(email);
+        objMap.NewPasswordField.sendKeys(password);
+        objMap.NewPasswordConfirmField.sendKeys(password);
+        objMap.AgreeCheckboxField.click();
+        objMap.signUpButton.click().then(() => {
+            switch (emptyfield){
+                case "username":
+                    expect(objMap.usernameValidator.isDisplayed()).toBe(true);
+                    objMap.usernameValidator.getText().then((text)=>{
+                        expect(text).toContain("Username must contain at least 3 characters");
+                    });
+                    break;
+                case "email":
+                    expect(objMap.emailValidator.isDisplayed()).toBe(true);
+                    objMap.emailValidator.getText().then((text)=>{
+                        expect(text).toContain("Invalid email");
+                    });
+                    break;
+                case "password":
+                    expect(objMap.passwordValidator.isDisplayed()).toBe(true);
+                    objMap.passwordValidator.getText().then((text)=>{
+                        expect(text).toContain("Password must contain at least 8 characters, including numbers and letters");
+                    });
+                    break;
+                default:
+                    break;
+
+            }
+        })
+    };
+
+    this.processDeleteUser = function (url, username, password, userForDelete){
+        browser.ignoreSynchronization = true;
+        browser.get(url).then(()=> {
+            browser.ignoreSynchronization = true;
+
+            expect(objMap.adminPageUsernameField.isDisplayed()).toBe(true);
+            expect(objMap.adminPagePasswordField.isDisplayed()).toBe(true);
+            expect(objMap.adminPageSignInButton.isDisplayed()).toBe(true);
+
+            objMap.adminPageUsernameField.sendKeys(username);
+            objMap.adminPagePasswordField.sendKeys(password);
+            objMap.adminPageSignInButton.click().then(() => {
+                browser.sleep(1000);
+                expect(objMap.adminPageHeader.isDisplayed()).toBe(true);
+                expect(objMap.adminPageHeader.getText().then((text)=>{
+                    expect(text).toEqual("Dashboard");
+                }));
+            });
+            objMap.adminPageUsersField.click().then(() => {
+                expect(objMap.adminPageSearchByUsername.isDisplayed()).toBe(true);
+            });
+            objMap.adminPageSearchByUsername.sendKeys(userForDelete).then(() => {
+                browser.sleep(1000);
+                expect(objMap.adminPageFoundUsername(userForDelete).isDisplayed()).toBe(true);
+                objMap.adminPageRemoveUser(userForDelete).click().then(() => {
+                    expect(objMap.adminPageConfirmDeleteButton.isDisplayed()).toBe(true);
+                    objMap.adminPageConfirmDeleteButton.click();
+                    browser.sleep(1000);
+                });
+            });
+        });
+        browser.ignoreSynchronization = false;
     };
 
     this.add_project = function () {

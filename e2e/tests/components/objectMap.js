@@ -27,16 +27,23 @@ const TestObj = function () {
     this.AgreeCheckboxField    			= element(by.xpath("//input[@name='agreement']"));
     this.signUpButton    			    = element(by.xpath("//button[@type='submit']"));
 
+    //TODO change xpaths to model
+    this.usernameValidator              = element(by.xpath("//div[contains(@ng-if,\"formValidator:'username'\")]"));
+    this.emailValidator                 = element(by.xpath("//div[contains(@ng-if,\"formValidator:'email'\")]"));
+    this.passwordValidator              = element(by.xpath("//div[contains(@ng-class,\"formValidator:'password'\")]"));
+    this.passwordConfirmValidator       = element(by.xpath("//div[contains(@ng-if,\"formValidator:'passwordConfirm'\")]"));
+
     // Admin page Locators
     this.adminPageUsernameField  		= element(by.xpath("//input[@name='username']"));
     this.adminPagePasswordField  		= element(by.xpath("//input[@name='password']"));
-    this.adminPageFountUsername = function(username){
+    this.adminPageFoundUsername = function(username){
         return element(by.xpath(`//tbody/tr/td[text()='${username}']`));
     };
     this.adminPageRemoveUser = function(username){
         return element(by.xpath(`//tbody/tr/td[text()='${username}']/parent::tr/td/div/a/i[contains(@style,'red')]/parent::a`));
     };
     this.adminPageConfirmDeleteButton   = element(by.xpath("//button[contains(text(),'Delete')]"));
+    this.adminPageHeader                = element(by.xpath("//h1[@class='page-header']"));
 
     // Admin page Users Locators
     this.adminPageUsersField  		    = element(by.xpath("//a[contains(text(),'Users')]"));
@@ -157,7 +164,7 @@ const TestObj = function () {
     
     // "Delete" Modal elements
     this.deleteModal                    = element(by.xpath("//div[@class='modal-header']/p[text()='Delete this project ?']/../.."));
-    this.cancelBtn                      = this.deleteModal.element(by.className('btn btn-cancel'));;
+    this.cancelBtn                      = this.deleteModal.element(by.className('btn btn-cancel'));
     this.deleteBtn                      = this.deleteModal.element(by.className('btn btn-negative'));
 
 
