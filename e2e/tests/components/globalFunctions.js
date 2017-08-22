@@ -101,6 +101,38 @@ const globalFunc = function () {
         })
     };
 
+    this.processDeleteUser = function (url, username, password, userForDelete){
+        browser.ignoreSynchronization = true;
+        browser.get(url).then(()=> {
+            browser.ignoreSynchronization = true;
+
+            expect(objMap.adminPageUsernameField.isDisplayed()).toBe(true);
+            expect(objMap.adminPagePasswordField.isDisplayed()).toBe(true);
+            expect(objMap.adminPageSignInButton.isDisplayed()).toBe(true);
+
+            objMap.adminPageUsernameField.sendKeys(username);
+            objMap.adminPagePasswordField.sendKeys(password);
+            objMap.adminPageSignInButton.click().then(() => {
+                browser.sleep(3000);
+                expect(objMap.adminPageHeader.isDisplayed()).toBe(true);
+                expect(objMap.adminPageHeader.getText().then((text)=>{
+                    expect(text).toEqual("Dashboard");
+                }));
+            });
+            objMap.adminPageUsersField.click().then(() => {
+                expect(objMap.adminPageSearchByUsername.isDisplayed()).toBe(true);
+            });
+            objMap.adminPageSearchByUsername.sendKeys(userForDelete).then(() => {
+                expect(objMap.adminPageFoundUsername(userForDelete).isDisplayed()).toBe(true);
+                objMap.adminPageRemoveUser(userForDelete).click().then(() => {
+                    expect(objMap.adminPageConfirmDeleteButton.isDisplayed()).toBe(true)
+                    objMap.adminPageConfirmDeleteButton.click();
+                });
+            });
+        });
+        browser.ignoreSynchronization = false;
+    };
+
     this.add_project = function () {
         objMap.add_icon.click().then(() => {
             expect(objMap.create_project_title.isDisplayed()).toBe(true);

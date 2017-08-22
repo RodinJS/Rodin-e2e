@@ -23,13 +23,14 @@ const TestObj = function () {
     // Admin page Locators
     this.adminPageUsernameField  		= element(by.xpath("//input[@name='username']"));
     this.adminPagePasswordField  		= element(by.xpath("//input[@name='password']"));
-    this.adminPageFountUsername = function(username){
+    this.adminPageFoundUsername = function(username){
         return element(by.xpath(`//tbody/tr/td[text()='${username}']`));
     };
     this.adminPageRemoveUser = function(username){
         return element(by.xpath(`//tbody/tr/td[text()='${username}']/parent::tr/td/div/a/i[contains(@style,'red')]/parent::a`));
     };
     this.adminPageConfirmDeleteButton   = element(by.xpath("//button[contains(text(),'Delete')]"));
+    this.adminPageHeader                = element(by.xpath("//h1[@class='page-header']"));
 
     // Admin page Users Locators
     this.adminPageUsersField  		    = element(by.xpath("//a[contains(text(),'Users')]"));

@@ -33,17 +33,27 @@ const globalFunc = require('../components/globalFunctions');
 describe('SignUp.ts', () => {
 
     beforeEach(() => {
+        browser.driver.manage().window().maximize();
+        browser.ignoreSynchronization = false;
         common.goToUrl('register');
     });
 
     it('SignUp_and_delete_user.tc', () => {
+        newUserName = common.NEWUSER.randomUser.Name;
+        newUserEmail = common.NEWUSER.randomUser.Email;
+        newUserPass = common.NEWUSER.randomUser.Password;
+
         globalFunc.isDisplayed_SignUp_Fields();
-        globalFunc.processSignUp(
-            common.NEWUSER.randomUser.Name,
-            common.NEWUSER.randomUser.Email,
-            common.NEWUSER.randomUser.Password,
-            true
-        );
+        globalFunc.processSignUp(newUserName, newUserEmail, newUserPass, true);
+
+        console.log("newUserName = "+newUserName);
+        console.log("newUserName = "+newUserName);
+
+        url = "http://178.62.229.191:7002/";
+        adminUser = common.USERS.MherS.username;
+        adminPass = common.USERS.MherS.password;
+
+        globalFunc.processDeleteUser(url, adminUser, adminPass, newUserName);
     });
 
 });
