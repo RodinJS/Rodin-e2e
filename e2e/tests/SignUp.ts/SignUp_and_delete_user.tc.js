@@ -54,6 +54,10 @@ describe('SignUp.ts', () => {
         adminPass = common.USERS.MherS.password;
 
         globalFunc.processDeleteUser(url, adminUser, adminPass, newUserName);
+
+        // common.goToUrl('login');
+        // globalFunc.isDisplayed_Login_Fields();
+        // globalFunc.processLogin(newUserName, newUserPass, false);
     });
 
 });

@@ -148,7 +148,7 @@ const TestObj = function () {
     
     // "Delete" Modal elements
     this.deleteModal                    = element(by.xpath("//div[@class='modal-header']/p[text()='Delete this project ?']/../.."));
-    this.cancelBtn                      = this.deleteModal.element(by.className('btn btn-cancel'));;
+    this.cancelBtn                      = this.deleteModal.element(by.className('btn btn-cancel'));
     this.deleteBtn                      = this.deleteModal.element(by.className('btn btn-negative'));
 
 

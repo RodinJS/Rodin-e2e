@@ -113,7 +113,7 @@ const globalFunc = function () {
             objMap.adminPageUsernameField.sendKeys(username);
             objMap.adminPagePasswordField.sendKeys(password);
             objMap.adminPageSignInButton.click().then(() => {
-                browser.sleep(3000);
+                browser.sleep(1000);
                 expect(objMap.adminPageHeader.isDisplayed()).toBe(true);
                 expect(objMap.adminPageHeader.getText().then((text)=>{
                     expect(text).toEqual("Dashboard");
@@ -123,10 +123,12 @@ const globalFunc = function () {
                 expect(objMap.adminPageSearchByUsername.isDisplayed()).toBe(true);
             });
             objMap.adminPageSearchByUsername.sendKeys(userForDelete).then(() => {
+                browser.sleep(1000);
                 expect(objMap.adminPageFoundUsername(userForDelete).isDisplayed()).toBe(true);
                 objMap.adminPageRemoveUser(userForDelete).click().then(() => {
-                    expect(objMap.adminPageConfirmDeleteButton.isDisplayed()).toBe(true)
+                    expect(objMap.adminPageConfirmDeleteButton.isDisplayed()).toBe(true);
                     objMap.adminPageConfirmDeleteButton.click();
+                    browser.sleep(1000);
                 });
             });
         });
