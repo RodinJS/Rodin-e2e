@@ -36,10 +36,31 @@ describe('EditProfile.ts', () => {
 
         // this.confirmPass = element(by.buttonText('Update Password'));
         objMap.confirmPass.click();
+        
+        // checking that error appeared that specified password is invalid
+        
+        let error = objMap.newPassword.element(by.xpath("../div[@class='validation error']"));
 
-        // TODO checks with incorrect password login
-        // check that password is not updated. No notification pops up.
+        browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
+        {
+            error.getText().then(function(text)
+           {
+               expect(text).toBe("Password must contain at least 8 characters, including numbers and letters");
+           });
+        });
+
+        // Check that no notification poped up, also that password is not updated by sign out and sign in within new password.
+        
         expect(objMap.notificationsArray.count()).toBe(0);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
+
+        // login
+        globalFunc.processLogin(common.TESTUSERS[3].username,"Test", false);
 
     });
 

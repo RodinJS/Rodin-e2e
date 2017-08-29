@@ -28,7 +28,7 @@ describe('General_Settings.ts', () => {
     password = common.TESTUSERS[1].password;
 
 
-    it('Login_with_existing_cridentals.tc', () => {
+    xit('Login_with_existing_cridentals.tc', () => {
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(user, password, true);
     });
@@ -38,19 +38,19 @@ describe('General_Settings.ts', () => {
     project_url = common.TESTPROJECTS[0].ProjectURL;
     project_description = common.TESTPROJECTS[0].ProjectDescription;
 
-    it('Create_project_with_unique_URL.tc', () => {
+    xit('Create_project_with_unique_URL.tc', () => {
         globalFunc.add_project();
         globalFunc.isDisplayed_Project_Fields();
         globalFunc.process_fill_project_requred_fields(template_name, project_name, project_url, project_description, true);
     });
 
-    it('Public_project_and_check.tc', () => {
+    xit('Public_project_and_check.tc', () => {
         globalFunc.open_project_settings(project_name);
         globalFunc.publicProject(user, project_url);
         globalFunc.openPublicProject(user, project_url);
     });
 
-    it('Cleanup.tc', () => 
+    xit('Cleanup.tc', () => 
     {
         // sign out
         let userMenu = browser.findElement(by.id('accountLabel'));

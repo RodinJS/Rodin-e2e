@@ -27,12 +27,12 @@ describe('EditProfile.ts', () => {
     user = common.TESTUSERS[1].username;
     password = common.TESTUSERS[1].password;
 
-    it('Login_with_existing_cridentals.tc', () => {
+    xit('Login_with_existing_cridentals.tc', () => {
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(user, password, true);
     });
 
-    it('Sync_with_google.tc', () => {
+    xit('Sync_with_google.tc', () => {
         globalFunc.openEditProfile();
         console.log("1. before syncWithGoogle");
         globalFunc.syncWithGoogle();

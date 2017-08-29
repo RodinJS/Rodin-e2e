@@ -6,7 +6,7 @@ const num = Math.random()*10000000+1;
 
 const CONSTANTS = {
     spaceURL:'https://rodin.space/',
-    //spaceURL:'http://rodinapp.com/',
+    //spaceURL:'https://rodinapp.com/',
     designURL:'https://rodin.design/',
     ioURL:'https://rodin.io/',
     googleURL: 'google.com/',
