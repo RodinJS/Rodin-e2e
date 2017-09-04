@@ -88,6 +88,7 @@ const TestObj = function () {
     this.firstName                      = element(by.model("$ctrl.currentUser.profile.firstName"));
     this.lastName                       = element(by.model("$ctrl.currentUser.profile.lastName"));
     this.country                        = element(by.model("$ctrl.currentUser.profile.city"));
+    this.editEmail                      = element(by.model("$ctrl.currentUser.email"));
     this.updateProfile                  = element(by.partialButtonText('Update Profile'));
     // password tab
     this.passwordTab                    = element(by.linkText('Password'));
