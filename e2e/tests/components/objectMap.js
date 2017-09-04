@@ -87,6 +87,7 @@ const TestObj = function () {
     this.googleSync                     = element(by.xpath("//button[@ng-click='$ctrl.googleSync()']"));
     this.firstName                      = element(by.model("$ctrl.currentUser.profile.firstName"));
     this.lastName                       = element(by.model("$ctrl.currentUser.profile.lastName"));
+    this.country                        = element(by.model("$ctrl.currentUser.profile.city"));
     this.updateProfile                  = element(by.partialButtonText('Update Profile'));
     // password tab
     this.passwordTab                    = element(by.linkText('Password'));
