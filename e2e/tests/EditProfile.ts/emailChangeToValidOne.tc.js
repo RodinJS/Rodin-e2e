@@ -13,14 +13,14 @@ describe('EditProfile.ts', () => {
         common.goToUrl('login');
     });
 
-    xit('loginWithExistingCridentals.tc', () => {
+    it('loginWithExistingCridentals.tc', () => {
     	// Login into user account
         globalFunc.isDisplayed_Login_Fields();
         globalFunc.processLogin(common.TESTUSERS[6].username, common.TESTUSERS[6].password, true);
     });
 	
 
-    xit('emailChangeToValidOne.tc', () => {
+    it('emailChangeToValidOne.tc', () => {
 
         // go to edit profile section
         globalFunc.openEditProfile();
@@ -29,7 +29,7 @@ describe('EditProfile.ts', () => {
         objMap.editEmail.clear();
 
         // change email to registered one
-        objMap.editEmail.sendKeys('rodintest@mailinator.com');
+        objMap.editEmail.sendKeys('rodintesting@mailinator.com');
         
         // click on Update profile
         objMap.updateProfile.click();
@@ -55,32 +55,52 @@ describe('EditProfile.ts', () => {
         expect(this.publishBtn.isDisplayed()).toBe(true);
         this.publishBtn.click();
 
+        // go to edit profile section
+        globalFunc.openEditProfile();
+       
+       	// clean previous email
+        objMap.editEmail.clear();
+
+        // change email to registered one
+        objMap.editEmail.sendKeys('mariam@rodin.io');
+        
+        // click on Update profile
+        objMap.updateProfile.click();
+
+        // check that profile is updated
+        expect(objMap.notificationsArray.count()).toBe(1);
+        expect(objMap.notificationsArray.get(0).getText()).toBe('Profile Updated');
+
+        //celanUP
+        // delete project
+    	globalFunc.delete_project("TestEmail",true);
+   
     });
 
-    xit('EmailCheck.tc', () => {
+    it('EmailCheckaAndCleanup.tc', () => {
 
         // go to mailinator and check email.
         browser.restart();
         browser.waitForAngularEnabled(false);
         browser.get("https://mailinator.com");
 
-        browser.findElement(by.id('inboxfield')).sendKeys('rodintest');
+        browser.findElement(by.id('inboxfield')).sendKeys('rodintesting');
         element(by.partialButtonText('Go!')).click();
 
-        element(by.className('all_message-min_autor ng-binding')).getText().then((text) =>{ 
-            expect(text).toBe('Rodin team1');
-        });
-    
-    });
+        //let objM = element(by.css('div[title="FROM"]'));
+        //browser.wait(EC.textToBePresentInElement(objM, 'Rodin team'), 15000);
 
-    xit('Cleanup.tc', () => {
+        expect(element(by.css('div[title="FROM"]')).getText()).toBe('Rodin team');
 
-        // sign out
-        let userMenu = browser.findElement(by.id('accountLabel'));
-        userMenu.click();
-        let signOut = element(by.className('signout-link'));
-        signOut.click();
-    
+        let objM = element(by.css('div[title="FROM"]'));
+        objM.click();
+        browser.sleep(7000);
+
+        browser.findElement(by.css('span[title="Delete Emails"]')).click();
+        browser.sleep(5000);
+        //browser.wait(EC.visibilityOf(delM), 15000);
+        //delM.click();
+   
     });
 
 });
