@@ -2,7 +2,7 @@
  * Created by xgharibyan on 3/23/17.
  */
 
-const num = Math.random()*10000000+1;
+const random_num = Math.random()*10000000+1;
 
 const CONSTANTS = {
     spaceURL:'https://rodin.space/',
@@ -78,8 +78,8 @@ const USERS = {
 // SignUp Users
 const NEWUSER = {
     randomUser: {
-        Name: 'user' + Math.floor(num),
-        Email: 'user' + Math.floor(num) + '@gmail.com',
+        Name: 'user' + Math.floor(random_num),
+        Email: 'user' + Math.floor(random_num) + '@gmail.com',
         Password: 'a1234567'
     }
 };
@@ -87,16 +87,16 @@ const NEWUSER = {
 // Old syntax
 const TESTPROJECTS = [
     {
-        ProjectName:'name'+Math.floor(num),
-        ProjectURL:'url'+Math.floor(num),
+        ProjectName:'name'+Math.floor(random_num),
+        ProjectURL:'url'+Math.floor(random_num),
         ProjectDescription:'description'
     }
 ];
 
 // New
 const PROJECTS = {
-    Name:'name'+Math.floor(num),
-    URL:'url'+Math.floor(num),
+    Name:'name'+Math.floor(random_num),
+    URL:'url'+Math.floor(random_num),
     Description:'description'
 };
 

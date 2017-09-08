@@ -11,7 +11,7 @@ exports.config = {
     standalone: true,
     specs: [
         //'./../tests/**/*.tc.js'
-        './../tests/**/SignUp*.tc.js'
+        './../tests/**/SignUp_with*.tc.js'
         // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{

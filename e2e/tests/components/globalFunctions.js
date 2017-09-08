@@ -73,6 +73,7 @@ const globalFunc = function () {
             }
             else{
                 expect(objMap.wrongCredentials.isDisplayed()).toBe(true);
+                browser.sleep(2000);
                 expect(objMap.notificationsArray.count()).toBe(1);
                 expect(objMap.notificationsArray.get(0).getText()).toBe('Wrong username or password');
             }
@@ -94,9 +95,8 @@ const globalFunc = function () {
                 });
             }
             else{
-                // TODO: Here write code for negative test cases!
-                // Add checking following notification
-                // Username or Email already exists
+                expect(objMap.notificationsArray.count()).toBe(1);
+                expect(objMap.notificationsArray.get(0).getText()).toBe('Username or Email already exists');
             }
         })
     };
