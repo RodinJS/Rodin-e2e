@@ -20,6 +20,12 @@ const TestObj = function () {
     this.AgreeCheckboxField    			= element(by.xpath("//input[@name='agreement']"));
     this.signUpButton    			    = element(by.xpath("//button[@type='submit']"));
 
+    //TODO change xpaths to model
+    this.usernameValidator              = element(by.xpath("//div[contains(@ng-if,\"formValidator:'username'\")]"));
+    this.emailValidator                 = element(by.xpath("//div[contains(@ng-if,\"formValidator:'email'\")]"));
+    this.passwordValidator              = element(by.xpath("//div[contains(@ng-class,\"formValidator:'password'\")]"));
+    this.passwordConfirmValidator       = element(by.xpath("//div[contains(@ng-if,\"formValidator:'passwordConfirm'\")]"));
+
     // Admin page Locators
     this.adminPageUsernameField  		= element(by.xpath("//input[@name='username']"));
     this.adminPagePasswordField  		= element(by.xpath("//input[@name='password']"));

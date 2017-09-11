@@ -50,7 +50,7 @@ describe('SignUp.ts', () => {
         common.goToUrl('register');
     });
 
-    it('SignUp_with_existing_user.tc', () => {
+    it('SignUp_with_existing_email.tc', () => {
         newUserName = common.NEWUSER.randomUser.Name;
         newUserEmail = common.NEWUSER.randomUser.Email;
         newUserPass = common.NEWUSER.randomUser.Password;

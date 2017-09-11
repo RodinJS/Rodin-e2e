@@ -101,6 +101,40 @@ const globalFunc = function () {
         })
     };
 
+
+    this.processSignUpWIthEmptyField = function (username, email, password, emptyfield) {
+        objMap.newUserNameField.sendKeys(username);
+        objMap.newEmailField.sendKeys(email);
+        objMap.NewPasswordField.sendKeys(password);
+        objMap.NewPasswordConfirmField.sendKeys(password);
+        objMap.AgreeCheckboxField.click();
+        objMap.signUpButton.click().then(() => {
+            switch (emptyfield){
+                case "username":
+                    expect(objMap.usernameValidator.isDisplayed()).toBe(true);
+                    objMap.usernameValidator.getText().then((text)=>{
+                        expect(text).toContain("Username must contain at least 3 characters");
+                    });
+                    break;
+                case "email":
+                    expect(objMap.emailValidator.isDisplayed()).toBe(true);
+                    objMap.emailValidator.getText().then((text)=>{
+                        expect(text).toContain("Invalid email");
+                    });
+                    break;
+                case "password":
+                    expect(objMap.passwordValidator.isDisplayed()).toBe(true);
+                    objMap.passwordValidator.getText().then((text)=>{
+                        expect(text).toContain("Password must contain at least 8 characters, including numbers and letters");
+                    });
+                    break;
+                default:
+                    break;
+
+            }
+        })
+    };
+
     this.processDeleteUser = function (url, username, password, userForDelete){
         browser.ignoreSynchronization = true;
         browser.get(url).then(()=> {
