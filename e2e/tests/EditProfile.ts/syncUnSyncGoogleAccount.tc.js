@@ -50,9 +50,21 @@ describe('EditProfile.ts', () => {
         expect(this.objSync.getText()).toEqual('Synced as (rodintesting@gmail.com)');
         browser.sleep(2000);
 
+        // cancel unsync from google
+        this.objSync.click();
+        browser.wait(EC.visibilityOf(objMap.unSyncModal.element(by.partialLinkText("Cancel"))), 5000);
+        objMap.unSyncModal.element(by.partialLinkText("Cancel")).click();
+
+        expect(this.objSync.getText()).toEqual('Synced as (rodintesting@gmail.com)');
+
         // unsync from google
         this.objSync.click();
-        element(by.partialButtonText("Unsync")).click();
+        
+        this.unSyncBtn = objMap.unSyncModal.element(by.partialButtonText("Unsync"));
+        this.unSyncBtn.click();
+        expect(objMap.notificationsArray.count()).toBe(1);
+        //expect(objMap.notificationsArray.get(0).getText()).toBe('google unsynced');
+        browser.wait(EC.textToBePresentInElement(objMap.notificationsArray.get(0).getText(), 'google unsynced'), 5000);
 
     });
 
