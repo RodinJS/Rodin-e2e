@@ -12,6 +12,13 @@ const TestObj = function () {
     this.wrongCredentials 				= this.LoginContainer.element(by.css('.text-wrong'));
     this.wrongCredentials2 				= element(by.css('.ng-binding'));
 
+    // Reset Password Locators 
+    this.registerForm                   = element(by.name("register"));
+    this.forgetPswdLink                 = this.registerForm.element(by.linkText("Forgot password?"));
+    this.resetPassEditBox               = element(by.model("$ctrl.formData.resetData"));
+    this.resetPswdForm                  = element(by.name("resetPasswordForm"));
+    this.submitBtn                      = this.resetPswdForm.element(by.partialButtonText("Submit"));
+
     // SignUp Locators
     this.newUserNameField  				= element(by.xpath("//input[@name='username']"));
     this.newEmailField  			    = element(by.xpath("//input[@name='email']"));
