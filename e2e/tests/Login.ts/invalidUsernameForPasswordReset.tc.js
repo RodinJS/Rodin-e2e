@@ -1,0 +1,32 @@
+/**
+ * Created by melkabelka on 9/10/17.
+ */
+
+const common = require('../utils/common');
+const globalFunc = require('../components/globalFunctions');
+const objMap = require('../components/objectMap');
+const EC = protractor.ExpectedConditions;
+
+describe('Login.ts', () => {
+
+    beforeEach(() => {
+        common.goToUrl('login');
+    });
+
+    it('invalidUsernameForPasswordReset.tc', () => {
+        
+        // click on forgot password link
+        objMap.forgetPswdLink.click();
+
+        // type non existing username
+        objMap.resetPassEditBox.sendKeys("Tuftyak");
+        
+        // click on Submit button
+        objMap.submitBtn.click();
+
+        // check error
+        browser.wait(EC.textToBePresentInElement(objMap.notificationsArray.get(0).getText(), "User doesn't exist"), 5000);
+        expect(objMap.notificationsArray.count()).toBe(1);
+    });
+
+});
