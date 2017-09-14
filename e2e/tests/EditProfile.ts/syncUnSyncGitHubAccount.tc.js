@@ -38,22 +38,11 @@ describe('EditProfile.ts', () => {
 
         //element(by.name("authorize")).click();
 
-        // browser.findElement(by.id("identifierId")).sendKeys('rodintesting');
-        // browser.sleep(3000);
-        // browser.findElement(by.id("identifierNext")).click();
-        // browser.sleep(5000);
-        // browser.findElement(by.name("password")).sendKeys("Qw1234567897");
-        // browser.findElement(by.id("passwordNext")).click();
-
-
         browser.sleep(3000);
         let par = element(by.className("modal-content"));
         par.element(by.className("btn btn-cancel")).click();
 
-        // expect(objMap.notificationsArray.count()).toBe(1);
-        // expect(objMap.notificationsArray.get(0).getText()).toBe('github synced');
-
-        this.objSync = element(by.css('div.col-md-10 > span.ng-binding'));
+        this.objSync = element(by.css('div.col-md-4 > span.ng-binding'));
         expect(this.objSync.getText()).toEqual('Synced as (mariam@rodin.io)');
         browser.sleep(2000);
 
@@ -62,6 +51,8 @@ describe('EditProfile.ts', () => {
         browser.wait(EC.visibilityOf(objMap.unSyncModal.element(by.partialLinkText("Cancel"))), 5000);
         objMap.unSyncModal.element(by.partialLinkText("Cancel")).click();
 
+        browser.sleep(2000);
+
         expect(this.objSync.getText()).toEqual('Synced as (mariam@rodin.io)');
 
         // unsync from google
@@ -69,6 +60,7 @@ describe('EditProfile.ts', () => {
         
         this.unSyncBtn = objMap.unSyncModal.element(by.partialButtonText("Unsync"));
         this.unSyncBtn.click();
+        browser.sleep(2000);
         expect(objMap.notificationsArray.count()).toBe(1);
         //expect(objMap.notificationsArray.get(0).getText()).toBe('google unsynced');
         browser.wait(EC.textToBePresentInElement(objMap.notificationsArray.get(0).getText(), 'github unsynced'), 5000);
