@@ -33,11 +33,12 @@ describe('SignUp.ts', () => {
 
     it('SignUp_with_empty_password.tc', () => {
         newUserName = common.NEWUSER.randomUser.Name;
-        newUserEmail = common.NEWUSER.randomUser.Email;;
+        newUserEmail = common.NEWUSER.randomUser.Email;
         newUserPass = "";
+        newUserPassConfirm = newUserPass;
 
         globalFunc.isDisplayed_SignUp_Fields();
-        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, "password");
+        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, newUserPassConfirm, "password");
     });
 
 });

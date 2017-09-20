@@ -35,9 +35,10 @@ describe('SignUp.ts', () => {
         newUserName = "";
         newUserEmail = common.NEWUSER.randomUser.Email;
         newUserPass = common.NEWUSER.randomUser.Password;
+        newUserPassConfirm = newUserPass;
 
         globalFunc.isDisplayed_SignUp_Fields();
-        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, "username");
+        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, newUserPassConfirm, "username");
     });
 
 });
