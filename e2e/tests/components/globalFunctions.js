@@ -102,11 +102,12 @@ const globalFunc = function () {
     };
 
 
-    this.processSignUpWIthEmptyField = function (username, email, password, emptyfield) {
+    this.processSignUpWIthEmptyField = function (username, email, password, password_confirm, emptyfield) {
+        browser.sleep(1000);
         objMap.newUserNameField.sendKeys(username);
         objMap.newEmailField.sendKeys(email);
         objMap.NewPasswordField.sendKeys(password);
-        objMap.NewPasswordConfirmField.sendKeys(password);
+        objMap.NewPasswordConfirmField.sendKeys(password_confirm);
         objMap.AgreeCheckboxField.click();
         objMap.signUpButton.click().then(() => {
             switch (emptyfield){
@@ -126,6 +127,12 @@ const globalFunc = function () {
                     expect(objMap.passwordValidator.isDisplayed()).toBe(true);
                     objMap.passwordValidator.getText().then((text)=>{
                         expect(text).toContain("Password must contain at least 8 characters, including numbers and letters");
+                    });
+                    break;
+                case "passwordConfirm":
+                    expect(objMap.passwordConfirmValidator.isDisplayed()).toBe(true);
+                    objMap.passwordConfirmValidator.getText().then((text)=>{
+                        expect(text).toContain("Passwords do not match");
                     });
                     break;
                 default:
