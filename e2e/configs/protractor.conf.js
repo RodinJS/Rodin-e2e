@@ -11,7 +11,7 @@ exports.config = {
     standalone: true,
     specs: [
         //'./../tests/**/*.tc.js'
-        './../tests/**/passwordDiffersFromConfirmPassword.tc.js'
+        './../tests/**/SignUp_*empty_*.tc.js'
         // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{
@@ -22,7 +22,6 @@ exports.config = {
     getPageTimeout: 50000,
 
     baseUrl:'https://rodin.space/',
-    //baseUrl:'https://rodinapp.com/',
 
     framework: 'jasmine2',
 
