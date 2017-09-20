@@ -12,14 +12,14 @@ const globalFunc = require('../components/globalFunctions');
  2. Click on SignUp
  3. Check URL
  4. Input username
- 5. Input empty email (username+@gmail.com)
+ 5. Input email (username+@gmail.com)
  6. Input password
- 7. Input password confirm
+ 7. Input empty password confirm
  8. Click agree checkbox
  9. Click on Sign up to submit
 
  Validate part:
- -Check username validation message appears "Invalid email"
+ -Check Password confirm validation message appears "Passwords do not match"
 
  */
 
@@ -31,14 +31,14 @@ describe('SignUp.ts', () => {
         common.goToUrl('register');
     });
 
-    it('SignUp_with_empty_email.tc', () => {
+    it('SignUp_with_empty_passwordConfirm.tc', () => {
         newUserName = common.NEWUSER.randomUser.Name;
-        newUserEmail = "";
+        newUserEmail = common.NEWUSER.randomUser.Email;
         newUserPass = common.NEWUSER.randomUser.Password;
-        newUserPassConfirm = newUserPass;
+        newUserPassConfirm = "";
 
         globalFunc.isDisplayed_SignUp_Fields();
-        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, newUserPassConfirm, "email");
+        globalFunc.processSignUpWIthEmptyField(newUserName, newUserEmail, newUserPass, newUserPassConfirm, "passwordConfirm");
     });
 
 });
