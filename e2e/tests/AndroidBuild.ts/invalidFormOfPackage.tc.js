@@ -77,7 +77,6 @@ describe('AndroidBuild.ts', () => {
         // sign out from user account
         globalFunc.signOut();
 
-
     });
 
 });
