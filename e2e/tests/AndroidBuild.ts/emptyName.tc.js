@@ -64,7 +64,7 @@ describe('AndroidBuild.ts', () => {
         globalFunc.delete_project("androidProj",true);
 
         // sign out from user account
-        globalFunc.signOut();;
+        globalFunc.signOut();
 
     });
 
