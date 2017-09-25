@@ -27,11 +27,11 @@ describe('AndroidBuild.ts', () => {
     it('Create_project_with_unique_URL.tc', () => {
 
     	// create a new project for android Build   	
-    	globalFunc.createProject("Drag'n'Drop", 'androidProj', 'androidurl','android project description', "", true);
+    	globalFunc.createProject("Drag'n'Drop", 'androidProj', 'androidurl','android project description', "", false);
 
     });
 
-    it('Invalid_form_of_version.tc', () => {
+    it('invalidFormOfVersion.tc', () => {
 
 		// go to created androidProj project's settings
         globalFunc.open_project_settings("androidProj");
@@ -73,11 +73,8 @@ describe('AndroidBuild.ts', () => {
 
         globalFunc.delete_project("androidProj",true);
 
-        // sign out
-        let userMenu = browser.findElement(by.id('accountLabel'));
-        userMenu.click();
-        let signOut = element(by.className('signout-link'));
-        signOut.click();
+        // sign out from user account
+        globalFunc.signOut();
 
     });
 
