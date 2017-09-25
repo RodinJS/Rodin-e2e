@@ -112,10 +112,6 @@ describe('iOSBuild.ts', () => {
     });
 
     it('iOS_publish_and_build.tc', () => {
-        //go to Dashboard
-        element(by.linkText('Dashboard')).click().then(() => {
-  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-  		});
 
 		// go to created iOSProj2 project's settings
         globalFunc.open_project_settings("iOSProj2");
@@ -179,13 +175,14 @@ describe('iOSBuild.ts', () => {
     });
 
     it('Cleanup.tc', () => {
-    	//go to Dashboard
-    	element(by.linkText('Dashboard')).click().then(() => {
-  			expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-  		});
 
         globalFunc.delete_project("iOSProj1",true);
         globalFunc.delete_project("iOSProj2",true);
+
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
 
     });
 

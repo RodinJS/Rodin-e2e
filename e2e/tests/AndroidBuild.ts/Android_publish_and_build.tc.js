@@ -98,12 +98,14 @@ describe('AndroidBuild.ts', () => {
     });
 
     it('Cleanup.tc', () => {
-        // //go to Dashboard
-        // element(by.linkText('Dashboard')).click().then(() => {
-        //     expect(browser.getCurrentUrl()).toEqual(common.CONSTANTS.spaceURL+"dashboard");
-        // });
 
         globalFunc.delete_project("AndroidProj2",true);
+
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
 
     });
 

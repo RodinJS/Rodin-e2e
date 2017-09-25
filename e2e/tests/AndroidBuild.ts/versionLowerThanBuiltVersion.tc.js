@@ -100,6 +100,12 @@ describe('AndroidBuild.ts', () => {
     	// delete project
         globalFunc.delete_project("AndroidProj",true);
 
+        // sign out
+        let userMenu = browser.findElement(by.id('accountLabel'));
+        userMenu.click();
+        let signOut = element(by.className('signout-link'));
+        signOut.click();
+
     });
 
 });

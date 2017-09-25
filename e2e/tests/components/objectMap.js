@@ -120,7 +120,9 @@ const TestObj = function () {
     this.updatePassword                 = element(by.xpath("//button[contains(text(), 'Update Password')]"));
     this.passwordSuccessMsg             = element(by.xpath("//div[@ng-bind-html='message']"));
     this.signOutLabel                   = element(by.xpath("//a[@data-ng-click='$ctrl.logout()']"));
-
+    // user menu locators
+    this.userMenu                       = element(by.id('accountLabel'));
+    this.signOut                        = element(by.className('signout-link'));
 
     this.googleSynced_link              = element(by.xpath("//span[contains(@ng-click,'$ctrl.openUnSync') and contains(@ng-click,'google')]"));
     this.googleUnsyncWndTitle           = element(by.xpath("//*[@close-modal='unsync']/*/*/*[@class='ng-binding']"));

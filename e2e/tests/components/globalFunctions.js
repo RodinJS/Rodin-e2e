@@ -101,6 +101,16 @@ const globalFunc = function () {
         })
     };
 
+    this.signOut = function () {    
+        // click on user menu
+        browser.wait(EC.presenceOf(objMap.userMenu), 5000);
+        objMap.userMenu.click();
+
+        // click on sign out
+        browser.wait(EC.presenceOf(objMap.signOut), 5000);
+        objMap.signOut.click();
+    };
+
 
     this.processSignUpWIthEmptyField = function (username, email, password, password_confirm, emptyfield) {
         browser.sleep(1000);
