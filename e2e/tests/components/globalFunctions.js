@@ -71,11 +71,10 @@ const globalFunc = function () {
                     expect(value.username).toEqual(username);
                 });
             }
-            else{
-                expect(objMap.wrongCredentials.isDisplayed()).toBe(true);
-                browser.sleep(2000);
+            else{ 
+                console.log("Check error message of invalid login");
+                browser.wait(EC.textToBePresentInElement(objMap.notificationsArray.get(0).getText(), 'Wrong username or password'), 15000);
                 expect(objMap.notificationsArray.count()).toBe(1);
-                expect(objMap.notificationsArray.get(0).getText()).toBe('Wrong username or password');
             }
         })
     };
