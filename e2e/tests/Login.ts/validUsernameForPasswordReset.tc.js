@@ -17,7 +17,7 @@ describe('EditProfile.ts', () => {
 
         // Login into user account
         globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[6].username, common.TESTUSERS[6].password, true);
+        globalFunc.processLogin(common.TESTUSERS[7].username, common.TESTUSERS[7].password, true);
 
          // go to edit profile section
         globalFunc.openEditProfile();
@@ -46,7 +46,7 @@ describe('EditProfile.ts', () => {
         objMap.forgetPswdLink.click();
 
         // type non existing username
-        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[6].username);
+        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[7].username);
         
         // click on Submit button
         objMap.submitBtn.click();
@@ -275,7 +275,7 @@ describe('EditProfile.ts', () => {
         browser.get("login");
 
         globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[6].username, "a1234567", true);
+        globalFunc.processLogin(common.TESTUSERS[7].username, "a1234567", true);
 
         //go to edit profile section
         globalFunc.openEditProfile();
@@ -297,10 +297,10 @@ describe('EditProfile.ts', () => {
         objMap.passwordTab.click();
 
         //type new password in new password field
-        objMap.newPassword.sendKeys(common.TESTUSERS[6].password);
+        objMap.newPassword.sendKeys(common.TESTUSERS[7].password);
 
         // confirm you set password
-        objMap.confirmPassword.sendKeys(common.TESTUSERS[6].password);
+        objMap.confirmPassword.sendKeys(common.TESTUSERS[7].password);
 
         // click on Update button
         objMap.confirmPass.click();
@@ -312,12 +312,9 @@ describe('EditProfile.ts', () => {
       //  expect(objMap.notificationsArray.get(0).getText()).toBe('Password successfully updated');
 
 
-        // sign out
-        let userMenu1 = browser.findElement(by.id('accountLabel'));
-        userMenu1.click();
-        let signOut1 = element(by.className('signout-link'));
-        signOut1.click();
-        browser.sleep(3000);
+        /// sign out
+        globalFunc.signOut();
+
         // // login
         // globalFunc.processLogin(common.TESTUSERS[6].username, "a1234567", false);
         // objMap.passwordField.clear();

@@ -216,7 +216,7 @@ describe('Dashboard.ts', () => {
         objMap.save_and_get_started_button.click();
 
        // checking that project is not created with error.
-         let error = objMap.project_description.element(by.xpath("../div[@class='validation error ng-binding ng-scope']"));
+        let error = objMap.project_description.element(by.xpath("../div[@class='validation error ng-binding ng-scope']"));
 
         browser.wait(EC.visibilityOf(error), 15000,'Wait for error element to appear').then (() =>
         {
@@ -335,10 +335,7 @@ describe('Dashboard.ts', () => {
       globalFunc.delete_project("Project is with max symbols in all input fields, i.e 64, 16, 128",true);
 
       // sign out
-      let userMenu = browser.findElement(by.id('accountLabel'));
-      userMenu.click();
-      let signOut = element(by.className('signout-link'));
-      signOut.click();
+      globalFunc.signOut();
 
   });
 
