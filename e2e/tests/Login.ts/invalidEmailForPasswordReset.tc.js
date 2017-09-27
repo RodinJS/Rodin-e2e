@@ -3,7 +3,6 @@
  */
 
 const common = require('../utils/common');
-const globalFunc = require('../components/globalFunctions');
 const objMap = require('../components/objectMap');
 const EC = protractor.ExpectedConditions;
 
