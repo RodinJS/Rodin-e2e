@@ -18,7 +18,7 @@ describe('Login.ts', () => {
         objMap.forgetPswdLink.click();
 
         // type non existing username
-        objMap.resetPassEditBox.sendKeys("Tuftyak");
+        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[1].username);
         
         // click on Submit button
         objMap.submitBtn.click();
