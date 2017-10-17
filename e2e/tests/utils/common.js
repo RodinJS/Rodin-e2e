@@ -14,16 +14,14 @@ const CONSTANTS = {
 
 const TESTUSERS = [
     {
-        username:'xgharibyan',
-        password:'password123456'
-    },
-    {
-        username:'mhers',
-        password:'a1234567',
+        username:'test',
+        password:'Qw1234567897',
+        email: 'rodintesting@gmail.com',
     },
     {
         username:'wronguser',
         password:'wrongpass',
+        email: 'mariam.adamyan@gmail.com',
     },
     {
         username:'mariam',
@@ -43,8 +41,8 @@ const TESTUSERS = [
         password:'Qw123456',
     },
     {
-        username:'test',
-        password:'Qw123456',
+        username:'xgharibyan',
+        password:'password123456'
     }
 ];
 

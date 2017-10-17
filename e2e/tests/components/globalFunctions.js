@@ -14,31 +14,31 @@ const globalFunc = function () {
 
     // TODO move these xpaths to objectMap.js
     // Function to generate (project settings), (project item), ... xpaths depending on project name.
-    this.projectSettings              = function  (project_name) {
-        return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
-    };
+    // this.projectSettings              = function  (project_name) {
+    //     return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    // };
 
-    this.projectOpenInEditor          = function  (user_name, project_url) {
-        let url = utils.CONSTANTS.spaceURL.replace("https://", "");
-        return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
-    };
+    // this.projectOpenInEditor          = function  (user_name, project_url) {
+    //     let url = utils.CONSTANTS.spaceURL.replace("https://", "");
+    //     return element(by.xpath(`//a[@href='https://editor.${url}${user_name}/${project_url}']`));
+    // };
 
-    this.projectDelete                = function  (project_name) {
-        // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
-    };
+    // this.projectDelete                = function  (project_name) {
+    //     // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/*/*/*/*/*/i[@class[contains(.,'icon-settings')]]/parent::a`));
+    // };
 
-    this.projectItem                   = function (project_name) {
-        // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
-        return element(by.xpath(`//div[@class='dashboard-content-item']/h3/a[text()[contains(.,'${project_name}')]]/parent::h3/parent::div/*/*/*/a[@class='item-title-link']`));
-    };
+    // this.projectItem                   = function (project_name) {
+    //     // return element(by.xpath(`//div[@class='dashboard-content-item']/a/h3[text()[contains(.,'${project_name}')]]/parent::a/parent::div/div[@class='item-content-wrapper']`));
+    //     return element(by.xpath(`//div[@class='dashboard-content-item']/h3/a[text()[contains(.,'${project_name}')]]/parent::h3/parent::div/*/*/*/a[@class='item-title-link']`));
+    // };
 
     // Editor Page
     this.editorProjectsDropdownUrl      = function (project_url) {
         return element(by.xpath(`//a[contains(text(),'${project_url}')]`));
     };
 
-    this.isDisplayed_Login_Fields = function () {
-        expect(objMap.LoginContainer.isDisplayed()).toBe(true);
+    this.isLoginFormDisplayed = function () {
+        expect(objMap.registerForm.isDisplayed()).toBe(true);
         expect(objMap.userNameField.isDisplayed()).toBe(true);
         expect(objMap.passwordField.isDisplayed()).toBe(true);
     };
@@ -107,7 +107,7 @@ const globalFunc = function () {
 
         // click on sign out
         browser.wait(EC.presenceOf(objMap.signOut), 5000);
-        objMap.signOut.click();
+        objMap.signOut.click().then(()=>this.isLoginFormDisplayed());
     };
 
 
@@ -242,14 +242,14 @@ const globalFunc = function () {
 
     // add objMap xpaths ...
     // signOutLabel
-    this.signOut = function () {
-        objMap.accountLabel.click().then(() => {
-            objMap.signOutLabel.click().then(() => {
-                expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}login`);
-                this.isDisplayed_Login_Fields();        // TODO Check if is working
-            })
-        })
-    };
+    // this.signOut = function () {
+    //     objMap.accountLabel.click().then(() => {
+    //         objMap.signOutLabel.click().then(() => {
+    //             expect(browser.getCurrentUrl()).toEqual(`${utils.CONSTANTS.spaceURL}login`);
+    //             expect(this.isLoginFormDisplayed()).toBe(true);
+    //         })
+    //     })
+    // };
 
 
 

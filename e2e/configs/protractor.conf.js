@@ -11,7 +11,7 @@ exports.config = {
     standalone: true,
     specs: [
         //'./../tests/**/*.tc.js'
-        './../tests/**/SignUp_*empty_*.tc.js'
+        './../tests/**/validUsernameForPasswordReset.tc.js'
         // './../tests/**/login.tc.js'
     ],
     multiCapabilities: [{

@@ -3,17 +3,16 @@
  */
 
 const TestObj = function () {
+    // Form for login/reset password
+    this.registerForm                   = element(by.name("register"));
 
 	// Login Locators
-    this.LoginContainer                 = element(by.css('.sign-in'));
-    this.userNameField  				= this.LoginContainer.element(by.model('$ctrl.formData.username'));
-    this.passwordField  				= this.LoginContainer.element(by.model('$ctrl.formData.password'));
-    this.loginButton    				= this.LoginContainer.element(by.css('.btn-submit'));
-    this.wrongCredentials 				= this.LoginContainer.element(by.css('.text-wrong'));
-    this.wrongCredentials2 				= element(by.css('.ng-binding'));
+    this.userNameField  				= element(by.model('$ctrl.formData.username'));
+    this.passwordField  				= element(by.model('$ctrl.formData.password'));
+    this.loginButton    				= this.registerForm.element(by.partialButtonText('Sign In'));
 
     // Reset Password Locators 
-    this.registerForm                   = element(by.name("register"));
+
     this.forgetPswdLink                 = this.registerForm.element(by.linkText("Forgot password?"));
     this.resetPassEditBox               = element(by.model("$ctrl.formData.resetData"));
     this.resetPswdForm                  = element(by.name("resetPasswordForm"));
