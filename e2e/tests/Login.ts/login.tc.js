@@ -12,14 +12,14 @@ describe('Login.ts', () => {
         common.goToUrl('login');
     });
 
-    it('Login_with_not_existing_cridentals.tc', () => {
-        globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[2].username, common.TESTUSERS[2].password, false);
+    it('loginWithNonExistingCredentials.tc', () => {
+        globalFunc.isLoginFormDisplayed();
+        globalFunc.processLogin(common.TESTUSERS[1].username, common.TESTUSERS[1].password, false);
     });
 
-    it('Login_with_existing_cridentals.tc', () => {
-        globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[7].username, common.TESTUSERS[7].password, true);
+    it('loginWithExistingCredentials.tc', () => {
+        globalFunc.isLoginFormDisplayed();
+        globalFunc.processLogin(common.TESTUSERS[0].username, common.TESTUSERS[0].password, true);
     });
 
     it('Cleanup', () => {
