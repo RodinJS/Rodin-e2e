@@ -13,16 +13,16 @@ describe('EditProfile.ts', () => {
         common.goToUrl('login');
     });
 
-    it('loginWithExistingCridentals.tc', () => {
+    it('loginWithExistingCredentials.tc', () => {
 
         // Login into user account
-        globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[7].username, common.TESTUSERS[7].password, true);
+        globalFunc.isLoginFormDisplayed();
+        globalFunc.processLogin(common.TESTUSERS[0].username, common.TESTUSERS[0].password, true);
 
          // go to edit profile section
         globalFunc.openEditProfile();
        
-        // clean previous email
+        // clean previous email address
         objMap.editEmail.clear();
 
         // change email to registered one
@@ -46,7 +46,7 @@ describe('EditProfile.ts', () => {
         objMap.forgetPswdLink.click();
 
         // type non existing username
-        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[7].username);
+        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[0].username);
         
         // click on Submit button
         objMap.submitBtn.click();
@@ -80,8 +80,10 @@ describe('EditProfile.ts', () => {
         globalFunc.browserTabChange(1);
 
         this.passMY = element(by.name("password"));
-        this.passMY.sendKeys("12345678");
-        browser.sleep(2000);
+        browser.wait(EC.visibilityOf(this.passMY), 35000,'Wait for error element to appear').then(()=>{
+
+            this.passMY.sendKeys("12345678");
+        });
 
         this.par = element(by.name("changePasswordForm"));
         let error = this.par.element(by.className('validation ng-binding error'));
@@ -274,8 +276,8 @@ describe('EditProfile.ts', () => {
 
         browser.get("login");
 
-        globalFunc.isDisplayed_Login_Fields();
-        globalFunc.processLogin(common.TESTUSERS[7].username, "a1234567", true);
+        globalFunc.isLoginFormDisplayed();
+        globalFunc.processLogin(common.TESTUSERS[0].username, "a1234567", true);
 
         //go to edit profile section
         globalFunc.openEditProfile();
@@ -297,10 +299,10 @@ describe('EditProfile.ts', () => {
         objMap.passwordTab.click();
 
         //type new password in new password field
-        objMap.newPassword.sendKeys(common.TESTUSERS[7].password);
+        objMap.newPassword.sendKeys(common.TESTUSERS[0].password);
 
         // confirm you set password
-        objMap.confirmPassword.sendKeys(common.TESTUSERS[7].password);
+        objMap.confirmPassword.sendKeys(common.TESTUSERS[0].password);
 
         // click on Update button
         objMap.confirmPass.click();
