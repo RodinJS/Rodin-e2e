@@ -1,5 +1,6 @@
 /**
  * Created by melkabelka on 9/10/17.
+ * Updated by melkabelka on 10/17/17.
  */
 
 const common = require('../utils/common');
@@ -12,13 +13,13 @@ describe('Login.ts', () => {
         common.goToUrl('login');
     });
 
-    it('invalidUsernameForPasswordReset.tc', () => {
+    it('invalidEmailForPasswordReset.tc', () => {
         
         // click on forgot password link
         objMap.forgetPswdLink.click();
 
-        // type non existing username
-        objMap.resetPassEditBox.sendKeys("mariam.adamyan@gmail.com");
+        // type non existing user email
+        objMap.resetPassEditBox.sendKeys(common.TESTUSERS[1].email);
         
         // click on Submit button
         objMap.submitBtn.click();
